@@ -20,8 +20,9 @@ class User {
         
     }
 
-    public static function GetByName($username) {
-        throw new Exception\UserNotFoundException($username, PHYS_E_USER_SESSION);
+    public static function GetByEmail($email_address) {
+        return true;
+        // throw new Exception\UserNotFoundException($email_address, PHYS_E_USER_SESSION);
     }
 
     public function ValidatePasswd($input) {

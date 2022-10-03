@@ -14,7 +14,7 @@ class UserNotFoundException extends Exception {
     }
 
     public function what() {
-        return "The user that was entered doesn't exist. {$this->message}";        
+        return "The user under the entered email address doesn't exist. {$this->message}";        
     }
 
     public function __toString() {

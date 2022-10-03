@@ -36,11 +36,11 @@ class SessionVisitor extends SessionBase {
      *        catching it because it shouldn't happen
      */
     public function GetVisitorUser() {
-        if ( $this->GetVar("username") == NULL ) {
+        if ( $this->GetVar("email") == NULL ) {
             return false;
         }
 
-        return User::GetByName( $this->GetVar("username") );
+        return User::GetByEmail( $this->GetVar("email") );
     }
 }
 

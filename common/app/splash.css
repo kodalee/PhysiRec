@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    background-color: #0a0a0a;
+    overflow: hidden !important;
+}
+
+.splash-screen {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+}
+
+.flex-box {
+    justify-content: center;
+    display: flex;
+}
+
+.splash-app-logo img {
+    width: 250px;
+}
+
+.splash-element {
+    color: white;
+
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.splash-app-introduce-login a {
+    padding: 10px 20px;
+    background-color: #b048ca;
+    border-radius: 25px;
+    text-decoration: none;
+    color: white;
+    transition: 0.5s;
+    border: 1px solid #fff;
+}
+
+.splash-app-introduce-login a:hover {
+    box-shadow: 0 0 10px 1px #b048ca;
+    background-color: #0a0a0a;
+}		

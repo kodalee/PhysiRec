@@ -1,0 +1,5 @@
+self.addEventListener("fetch", (event) => {
+
+
+
+})

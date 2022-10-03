@@ -1,0 +1,19 @@
+{
+    "name": "PhysiRec",
+    "icons": [
+        {
+           "src": "/mat/img/512.png",
+           "type": "image/png",
+           "sizes": "512x512"
+        }
+    ],
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "id": "life.physirec.pwa",
+    "background_color": "#0a0a0a",
+    "theme_color": "#0a0a0a",
+    "short_name": "PhysiRec",
+    "categories": ["education", "fitness", "pe"],
+    "description": "Keeping track of your physical education has never been easier."
+ }
