@@ -1,0 +1,8 @@
+/**
+ * Complex Application
+ */
+
+
+(async () => {
+
+})();
