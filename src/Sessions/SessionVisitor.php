@@ -40,7 +40,11 @@ class SessionVisitor extends SessionBase {
             return false;
         }
 
-        return User::GetByEmail( $this->GetVar("email") );
+        return User::GetByEmail( $this->GetVar("email"), false );
+    }
+
+    public function Kill() {
+        return session_destroy();
     }
 }
 

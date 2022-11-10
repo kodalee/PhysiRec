@@ -5,16 +5,16 @@ namespace Physler\User\Exception;
 use Exception;
 
 class UserNotFoundException extends Exception {
-    public $username;
+    public $email;
 
-    public function __construct($username, $message) 
+    public function __construct($email, $message) 
     {
-        $this->username = $username;
+        $this->email = $email;
         parent::__construct($message);
     }
 
     public function what() {
-        return "The user under the entered email address doesn't exist. {$this->message}";        
+        return "The user under the entered email address {$this->email} doesn't exist but the user was still signed in? {$this->message}";        
     }
 
     public function __toString() {

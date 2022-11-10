@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Person Picker</title>
+</head>
+<body class="center">
+    <div class="col">
+        <div id="lastname">...</div> <div id="curname" class="anim">...</div> <div id="nextname">...</div>
+    </div>
+    <div>
+        <button id="trybtn">Try</button>
+    </div>
+    <style>
+        div.col {
+            display: flex;
+            justify-content: center;
+        }
+        div.col div {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        body {
+            background-color: white;
+            color: black;
+            overflow:hidden;
+        }
+        
+        .anim:not(.tick) {
+            transition: 0.2s;
+        }
+
+        .anim.tick {
+            transform: scale(2.0);
+        }
+
+        .center {text-align: center;}
+    </style>
+    <script>
+        var tickLimit = 90;
+
+        var wc = new Audio("wc.wav");
+        var yay = new Audio("yay.wav");
+        var tryBtn = document.getElementById("trybtn");
+        var fields = {
+            last: document.getElementById("lastname"),
+            cur: document.getElementById("curname"),
+            next: document.getElementById("nextname")
+        };
+        var list = [
+            "koda",
+            "jerry",
+            "bob",
+            "mary",
+            "jane",
+            "nelson",
+            "larry"
+        ]
+
+        var names = {
+            last: "",
+            cur: "",
+            next: ""
+        }
+        
+        var randomPick = list[Math.floor(Math.random() * list.length)];
+
+        function RandomSelect() {
+            while (randomPick == names.next || randomPick == names.cur || randomPick == names.last) {
+                randomPick = list[Math.floor(Math.random() * list.length)];
+            }    
+            
+            return randomPick
+        }
+
+        function tryTick() {
+            wc.currentTime = 0;
+            wc.play();
+
+            names.last = names.cur
+            names.cur = names.next;
+            names.next = RandomSelect(list)
+
+            fields.last.innerHTML = names.last;
+            fields.cur.innerHTML = names.cur;
+            fields.next.innerHTML = names.next;
+        }
+
+        tryBtn.onclick = () => {
+            for (let i = 0; i < tickLimit; i++) {
+                setTimeout(tryTick, (i * i)*2);
+                
+            }
+            setTimeout(() => {
+                yay.play();
+            }, (tickLimit*tickLimit)*2)
+        }
+    </script>
+</body>
+</html>

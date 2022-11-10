@@ -12,6 +12,7 @@ class Determine {
         '::1'
     ];
     public static function CAN_VIEW_TRACE() {
+        return true;
         // Allow viewing of the stack trace if localhost
         if( IN_ARRAY($_SERVER["REMOTE_ADDR"], Determine::LOCALHOST) ){
             return true;

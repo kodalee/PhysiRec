@@ -2,7 +2,7 @@
 
 namespace Physler\GoogleApi\OAuth2\Client;
 
-use Phylser\Config;
+use Physler\Config;
 use Physler\GoogleApi\OAuth2\Client\OAuth2;
 
 class OAuth2Url extends OAuth2 {

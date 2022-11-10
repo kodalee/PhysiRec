@@ -2,7 +2,7 @@
 
 require(__DIR__ . "/src/Bootstrapper.php");
 
-use Phylser\Controller\Api\ApiController;
+use Physler\Controller\Api\ApiController;
 
 $apiController = new ApiController();
-$apiController->getResource("gauth")->InitAction();
+$apiController->getResource()->InitAction();

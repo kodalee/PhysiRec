@@ -16,7 +16,11 @@
  */
 
 const __REQUIRES = [
-    "/Config.php",
+    // Load libraries first
+    "/Libraries/ScssPhp/scss.inc.php",
+
+    // Then load all required mods
+    "/config.php",
     "/functions.php",
     "/constants.php",
     "/Users/User.php",
@@ -28,15 +32,20 @@ const __REQUIRES = [
     "/Db/DbClient.php",
     "/Db/Exception/ConnectErrorException.php",
     "/Db/Exception/QueryErrorException.php",
+    "/Http/BaseClient.php",
     "/GoogleApi/OAuth2/Client/OAuth2.php",
     "/GoogleApi/OAuth2/Client/OAuth2Url.php",
     "/GoogleApi/OAuth2/Client/Scopes/OAuth2Api.php",
     "/GoogleApi/OAuth2/Client/Scopes/ScopeBuilder.php",
     "/GoogleApi/OAuth2/Server/OAuth2.php",
-    "/GoogleApi/Http/HttpClient.php",
+    "/GoogleApi/Http/GoogleClient.php",
+    "/GoogleApi/Http/ConnectedGoogleClient.php",
     "/Controller/Api/BaseController.php",
+    "/Controller/Api/RenderController.php",
     "/Controller/Api/ApiController.php",
     "/Controller/Api/GAuthController.php",
+    "/Controller/Api/StatusController.php",
+    "/Controller/Api/AppController.php",
     "/BadThingHandler.php"
 ];
 

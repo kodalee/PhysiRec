@@ -1,6 +1,6 @@
 <?php
 
-namespace Phylser\Http;
+namespace Physler\Http;
 
 /** Informative HTTP codes */
 const HTTP_CONTINUE = 100;
@@ -63,17 +63,23 @@ const HTTP_VARIANT_ALSO_NEGOTIATES = 506;
 const HTTP_NOT_EXTENDED = 510;
 const HTTP_NETWORK_AUTH_REQUIRED =  511;
 
-class Client {
+class BaseClient {
     public $base_uri = "";
 
     public function __construct($options) {
 
     }
 
-    /**
-     * @param "GET" $method
-     */
-    public function request($method) {
+    public function send($method, $endpoint_or_url, $headers = [], $content = null) {
+        $http_xont = [
+            "header" => join("\r\n", array_merge($headers, ["Content-Length: ".STRLEN($content)])),
+            "method" => $method
+        ];
 
+        if ( !IS_NULL($content) ) {
+            $http_xont["content"] = $content;
+        }
+
+        return json_decode(file_get_contents(( $this->base_uri ).$endpoint_or_url, false, stream_context_create(["http"=>$http_xont])));
     }
 }

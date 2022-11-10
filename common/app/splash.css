@@ -1,16 +1,71 @@
-body {
+body:not(.err) {
     margin: 0;
-    background-color: #0a0a0a;
+    /* background-color: #0a0a0a; */
     overflow: hidden !important;
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
+    background: -webkit-linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
+    background: linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#53b9ff",GradientType=1);
+    backdrop-filter: brightness(0.0);
+    animation: fade-b 4s cubic-bezier(0.36, 0.48, 0, 0.83) 0s 1 normal forwards;
+}
+
+body.err {
+    margin: 0;
+    /* background-color: #0a0a0a; */
+    overflow: hidden !important;
+    background: rgb(0,0,0);
+    background: -moz-linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
+    background: -webkit-linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
+    background: linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#53b9ff",GradientType=1);
+    backdrop-filter: brightness(0.0);
+    animation: fade-err 1s cubic-bezier(0.36, 0.48, 0, 0.83) 0s 1 normal forwards;
+}
+
+@keyframes fade-b {
+    from {
+        backdrop-filter: brightness(0.0) hue-rotate(360deg);
+        -moz-backdrop-filter: brightness(0.0) hue-rotate(360deg);
+        -webkit-backdrop-filter: brightness(0.0) hue-rotate(360deg);
+    }
+    to {
+        backdrop-filter: brightness(1) hue-rotate(0deg);
+        -moz-backdrop-filter: brightness(1) hue-rotate(0deg);
+        -webkit-backdrop-filter: brightness(1) hue-rotate(0deg);
+    }
+}
+@keyframes fade-err {
+    from {
+        backdrop-filter: brightness(1) hue-rotate(0deg);
+        -moz-backdrop-filter: brightness(1) hue-rotate(0deg);
+        -webkit-backdrop-filter: brightness(1) hue-rotate(0deg);
+    }
+    to {
+        backdrop-filter: brightness(0.1) hue-rotate(145deg);
+        -moz-backdrop-filter: brightness(0.1) hue-rotate(145deg);
+        -webkit-backdrop-filter: brightness(0.1) hue-rotate(145deg);
+    }
 }
 
 .splash-screen {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    min-height: 100vh;
+}
+
+.splash-stuff {
+    transform: scale(1);
+}
+
+.transition .splash-stuff {
+    transition: 0.5s;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    transform: scale(0.5) !important;
 }
 
 .flex-box {
@@ -24,10 +79,10 @@ body {
 
 .splash-element {
     color: white;
-
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
 .splash-app-introduce-login a {
     padding: 10px 20px;
     background-color: #b048ca;
@@ -41,4 +96,4 @@ body {
 .splash-app-introduce-login a:hover {
     box-shadow: 0 0 10px 1px #b048ca;
     background-color: #0a0a0a;
-}		
+}

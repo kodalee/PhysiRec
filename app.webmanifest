@@ -15,5 +15,6 @@
     "theme_color": "#0a0a0a",
     "short_name": "PhysiRec",
     "categories": ["education", "fitness", "pe"],
-    "description": "Keeping track of your physical education has never been easier."
+    "description": "Keeping track of your physical education has never been easier.",
+    "orientation": "portrait"
  }

@@ -20,7 +20,6 @@ class BadThingHandler {
      * @param Throwable $exception
      */
     public function Issue($exception) {
-        
         echo(nl2br("There was an issue, contact an administrator about this issue. This issue should be logged for them."));
         return;
     }
