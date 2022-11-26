@@ -84,4 +84,21 @@ class AppController extends BaseController {
             $this->outputJson($ret);
         }
     }
+
+    public function activities() {
+        global $sesh;
+        $strErrorDesc = '';
+        $method = $this->getMethod();
+        $segments = $this->getSegments();
+        
+        if ($method == 'POST') {
+            $argq = $_POST;
+            $activity = $argq["activity"];
+            $explanation = $argq["explanation"];
+            $duration = $argq["duration"];
+            
+            $sesh->GetVisitorUser()->AddActivity($activity, $explanation, $duration);
+            $this->outputJson(["success" => true, "requestData" => $argq]);
+        }
+    }
 }

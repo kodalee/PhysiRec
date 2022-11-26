@@ -2,10 +2,17 @@
 
 namespace Physler\User;
 
+use DateTime;
 use Physler\Config;
 use Physler\Db\DbClient;
 use Physler\User\Exception;
 use stdClass;
+
+$activityEmojis = [
+    "MOVEMENT" => "🏃‍♂️",
+    "LIFTING" => "🏋️‍♂️",
+    "OTHER" => "❓"
+];
 
 class User {
     /** @var int */
@@ -22,34 +29,83 @@ class User {
     protected $user_groups;
     /** @var array */
     protected $activity_list;
+    /** @var array */
+    public $preferences;
 
     public function __construct($userInfo) {
+        $db = DbClient::Default();
+
         $this->id = $userInfo["id"];
         $this->display_name = $userInfo["display_name"];
         $this->real_name = $userInfo["real_name"];
         $this->profile_picture = $userInfo["profile_picture"];
         $this->email = $userInfo["email"];
         $this->user_groups = $userInfo["user_groups"];
-        $this->activity_list = [
-            "1 hour of yoga",
-            "Walked my dog around the block",
-            "Played basketball"
-        ];
+        $this->activity_list = [];
+
+        $qry = $db->Query("SELECT preference_data FROM `physler_user_preferences` WHERE `user_id` = '{$this->id}'");
+        if ($qry->num_rows == 1) {   
+            $this->preferences = json_decode($qry->fetch_row()[0], true);
+        }
+
+        $qry = $db->Query("SELECT * FROM `physler_activity_logs` WHERE user_id = {$this->id}");
+        if ($qry->num_rows > 0) {
+            $activities = [];
+            for ($i=0; $i < $qry->num_rows; $i++) { 
+                $dat = $qry->fetch_row();
+                array_push($activities, [
+                    "activity_id" => $dat[0],
+                    "user_id" => $dat[1],
+                    "catagory" => $dat[2],
+                    "description" => $dat[3],
+                    "duration" => $dat[4],
+                    "timestamp" => $dat[5]
+                ]);
+            }
+
+            $this->activity_list = $activities;
+        }
     }
 
     public function GetHtmlActivityList() {
-        $ar = "<ul class='my-0'>";
-        for ($i=0; $i < COUNT( $this->activity_list ); $i++) { 
-            $ar = $ar . "<li>" . $this->activity_list[$i] . "</li>";
+        global $activityEmojis;
+        if (COUNT( $this->activity_list ) > 0) {
+            $ar = "<ul class='my-0 latest-activity'>";
+            for ($i=0; $i < COUNT( $this->activity_list ); $i++) { 
+                $act = $this->activity_list[$i];
+                $currentDay = date("d/m/Y");
+                $activityDay = date("d/m/Y", strtotime($act["duration"]));
+                if ($currentDay == $activityDay) {
+                    $ar = $ar . "<li>{$activityEmojis[$act["catagory"]]} {$act["description"]}</li>";
+                }
+            }
+            $ar = $ar . "</ul>";
+            if (strpos($ar, "<li>") !== false) {
+                return $ar;
+            }
+            else {
+                return "<p>It looks like you don't have any activities logged today.</p>";
+            }
         }
-        $ar = $ar . "</ul>";
-        return $ar;
+        else {
+            return "<p>It looks like you don't have any activities logged today.</p>";
+        }
     }
 
     public function AddActivity($activity, $explaination, $duration) {
         $db = DbClient::Default();
         $db->Query("INSERT INTO `physler_activity_logs` (`activity_id`, `user_id`, `activity_catagory`, `activity_description`, `activity_duration`, `timestamp`) VALUES (NULL, '{$this->id}', '$activity', '$explaination', '$duration', '".time()."');");
         return true;
+    }
+
+    public function ChangeSetting($setting, $new_value) {
+        $db = DbClient::Default();
+        $preferences = (array) $this->preferences;
+        $preferences[$setting] = $new_value;
+
+        $this->preferences = (object) $preferences;
+
+        return $db->Query('UPDATE `physler_user_preferences` SET `preference_data` = \''.json_encode($preferences).'\' WHERE `physler_user_preferences`.`user_id` = '.$this->id.'};');
     }
 
     public static function MakeUser($email, $profile_picture, $names, $locale) {

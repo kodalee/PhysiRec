@@ -9,10 +9,13 @@ var mainEl = $("main")[0];
 
 function getUrlSegments(delimiter = null) {
     var urlBase = window.location.href.split("complex.php")[1];
-    var urlSegments = urlSegments.split("/");
+    var urlSegments = urlBase.split("/");
     if (urlSegments[0] == '') {
         urlSegments.shift();
     }
+
+    urlSegments = urlSegments.filter(seg => (seg.length != 0))
+    console.log(urlSegments.filter(seg => (seg.length != 0)))
 
     if (delimiter != null) {
         return urlSegments;
@@ -162,7 +165,14 @@ $(function() {
         docBody.classList.add("ambient-lighting")
     }, 500)
 
-    getPage("dashboard")
+
+    segments = getUrlSegments("/")
+    if (segments > 0) {
+        getPage(segments.join("/"))
+    }
+    else {
+        getPage("dashboard")
+    }
     registerAjaxNav()
 })
 

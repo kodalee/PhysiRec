@@ -139,6 +139,7 @@ if ($user == false) {
     <script src="/common/vendor/feather-icons/dist/feather.min.js"></script>
     <script src="/common/vendor/chart-js/dist/chart.min.js"></script>
     <script src="/common/app/complex.js"></script>
+    <script src="/common/vendor/duration-picker/out.js"></script>
 </body>
 
 </html>

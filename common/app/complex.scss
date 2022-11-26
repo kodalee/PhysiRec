@@ -252,6 +252,34 @@ icon {
 }
 
 
+.emoji-picker {
+    display: flex;
+    width: 100%;
+    border: 1px solid #ffffff60;
+    border-radius: 3px;
+	overflow: auto;
+
+	button {
+		width: 100%;
+		height: 50px;
+		font-size: 20px;
+		background: none;
+		transition: .3s;
+		border: 0;
+		&.active {
+			font-size: 30px;
+			box-shadow: inset 0 0 11px #a16dd0;
+			background: #a16dd030;
+		}
+	}
+}
+
+@media (min-width: 500px) {
+	.emoji-warning {
+		display: none;
+	}
+}
+
 .text-custom-404 {
 	font-size: 800%;
 	background-clip: text;
@@ -264,4 +292,63 @@ icon {
 
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+ul.latest-activity {
+    padding: 0;
+	li {
+		transition: 0.2s;
+		list-style: none;
+		list-style-type: none;
+		text-align: center;
+		background-color: #6633991a;
+		margin: 10px 0;
+		padding: 10px;
+		border: 1px solid white;
+		border-radius: 10px;
+		box-shadow: inset 0 -5px 8px #b38c8c26;
+		&:hover {
+			box-shadow: inset 0 -5px 8px #7427b26e;
+			transform: scale(1.03);		
+		}	
+	}
+}
+
+
+.form-input-label {
+    width: 100%;
+    position: relative;
+    display: inherit;
+}
+
+.form-input-label label {
+    position: absolute;
+    padding: 6px 2.5%;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--bs-gray-600);
+    pointer-events: none;
+    transition: 0.2s;
+}
+
+.form-input-label input::placeholder {
+    opacity: 0;
+}
+
+.form-input-label input:not(:placeholder-shown) ~ label,
+.form-input-label input:focus ~ label {
+    padding: 0.7px 13px;
+    font-size: 0.75rem;
+    color: var(--bs-gray-500);
+}
+
+.form-input-label input:not(:placeholder-shown),
+.form-input-label input:focus
+{
+    padding: 0.875rem 0.75rem 0rem 0.75rem
+}
+
+.form-input-label input
+{
+    transition: 0.2s;
 }

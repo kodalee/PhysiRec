@@ -19,7 +19,7 @@ class RenderController extends BaseController {
                 break;
         }
 
-        $path = "./".$_env.$name;
+        $path = __ROOT__."/".$_env.$name;
 
         if (file_exists($path) && is_file($path)) {
             $compiler = new ScssCompiler();

@@ -3,6 +3,10 @@
 namespace Physler\Controller\Api;
 
 class ApiController extends BaseController {
+    public static function Task() {
+        return (new ApiController())->getResource()->InitAction();
+    }
+
     public function getResource() {
         $segments = $this->getSegments();
         switch ((ISSET($segments[2]) ? $segments[2] : "")) {

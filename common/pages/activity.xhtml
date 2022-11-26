@@ -23,6 +23,20 @@
                             <ico>❓</ico><br>Other
                         </button>
                     </div>
+                    <div class="movement-form">
+                        <div class="form-group my-2 d-flex">
+                            <div class="form-input-label">
+                                <input class="form-control" type="text" placeholder=" " id="actm-explain">
+                                <label>Explain what you did in movement.</label>
+                            </div>
+                        </div>
+                        <div class="form-group my-2 d-flex">
+                            <div class="form-input-label">
+                                <input class="form-control" type="text" placeholder=" " id="actm-duration">
+                                <label>For how long?</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,5 +70,36 @@
                 button.classList.add("active")
             })
         })
+
+        let formattedDuration = new FormattedDuration(config = {
+            hoursUnitString: " hrs ",
+            minutesUnitString: " mins ",
+            secondsUnitString: " secs "
+        });
+
+        let durationPickerMaker = new DurationPickerMaker(formattedDuration);
+        durationPickerMaker.SetPickerElement(document.getElementById("actm-duration"), window, document);
+
+
+/*
+        let pickerElement = document.getElementById("duration_picker_field");
+        let receiverLabel = document.getElementById("output_label");
+        class LabelWrapperReceiver {
+            constructor(labelElement) {
+                this.labelElement = labelElement;
+            }
+            setSecondsValue(value) {
+                this.labelElement.textContent = value;
+            }
+        }
+        let labelWrapperReceier = new LabelWrapperReceiver(receiverLabel);
+        let formattedDuration = new FormattedDuration(config = {
+            // options here
+        });
+        let durationPickerMaker = new DurationPickerMaker(formattedDuration);
+        durationPickerMaker.AddSecondChangeObserver(labelWrapperReceier);
+        durationPickerMaker.SetPickerElement(pickerElement, window, document);
+
+*/
     })()
 </script>

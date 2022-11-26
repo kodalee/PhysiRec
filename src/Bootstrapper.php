@@ -15,7 +15,9 @@
  * hellokodalee@gmail.com
  */
 
-const __REQUIRES = [
+define("__ROOT__", $_SERVER["DOCUMENT_ROOT"]);
+
+const __IMPORTS__ = [
     // Load libraries first
     "/Libraries/ScssPhp/scss.inc.php",
 
@@ -49,9 +51,11 @@ const __REQUIRES = [
     "/BadThingHandler.php"
 ];
 
-for ($i = 0; $i < COUNT( __REQUIRES ); $i++) { 
-    require_once(__DIR__ . __REQUIRES[$i]);
+for ($i = 0; $i < COUNT( __IMPORTS__ ); $i++) { 
+    require_once(__DIR__ . __IMPORTS__[$i]);
 }
+
+define("__DEV__", Physler\Determine::CAN_VIEW_TRACE());
 
 Physler\BadThingHandler::Register();
 // created by @hellokoda on github with love ❤ 2022 / 2023
