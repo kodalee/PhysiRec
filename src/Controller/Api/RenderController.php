@@ -23,7 +23,7 @@ class RenderController extends BaseController {
 
         if (file_exists($path) && is_file($path)) {
             $compiler = new ScssCompiler();
-            $outputstyle = (isset($outputType) ? $outputType : "compressed");
+            $outputstyle = @($outputType ?? "compressed");
             $compiler->setOutputStyle($outputstyle);
             $year = date("Y");
             $data = "/** PhysiRec & PhyslerFramework (c) $year\n *  https://github.com/hellokoda/PhysiRec/LICENSE.md\n *  \n *\n *  Rendered from Sass to CSS by https://github.com/scssphp/scssphp\n *  https://github.com/scssphp/scssphp/blob/master/LICENSE.md\n **/\n\n".$compiler->compileString(file_get_contents($path))->getCss() . "\n\n";

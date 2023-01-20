@@ -4,59 +4,41 @@ namespace Physler\Db;
 
 use mysqli;
 use mysqli_result;
-use mysqli_sql_exception;
 use Physler\Config;
 
+define("EXPECT_ANYTHING", "expect anything");
+define("EXPECT_SINGLE_ROW", "expect one row");
+define("EXPECT_MULTIPLE_ROWS", "expect multiple rows");
+
 /**
- * Simple Sql Database Client
- * @deprecated since 01/09/23:
- * too vulnerable to SQL injection attacks,
- * replaced with a fully patched version from another one of my projects.
- * 
- * This class is no longer accessible, use the Physler\Db\DbClient_S class
- * as it has a proper argument cleanser for the Query and QueryJson method.
+ * Simple Sql Database Client made for PHP 8.0
  */
-class DbClient extends \Physler\Entity\DeprecatedInterface {
-    /** @var mysqli */
-    protected $connection = NULL;
-
-    /** @var string */
-    private $username;
-
-    /** @var string */
-    private $password;
-
-    /** @var string */
-    protected $server_address;
-
-    /** @var string */
-    public $selected_database = NULL;
+class DbClient_S {
+    public ?string $selected_database = NULL;
 
     // Simple newless method of class envoking.
     // Static function returns a new call of this class
     // when a connection is successfully made.
-    function __construct($sql_connection, $server_address, $username, $password) {
-        $this->connection = $sql_connection;
-
-        $this->username = $username;
-        $this->password = $password;
-        
-        $this->server_address = $server_address;
-    }
+    function __construct(
+        protected ?mysqli $connection = NULL,
+        protected string $server_address,
+        private string $username,
+        private string $password
+    ) { }
 
     /**
      * Initialize a connection to an SQL server
      * @param object $config
      */
-    static public function Init($config) {
+    static public function Init($cfg) {
         mysqli_report(MYSQLI_REPORT_OFF);
-        $conn = @mysqli_connect($config["serveraddr"], $config["username"], $config["password"]);
+        $conn = @mysqli_connect($cfg["serveraddr"], $cfg["username"], $cfg["password"]);
 
         if ( !$conn ) {
-            throw new Exception\ConnectErrorException($config["serveraddr"], mysqli_connect_error());
+            throw new Exception\ConnectErrorException($cfg["serveraddr"], mysqli_connect_error());
         }
 
-        return new DbClient($conn, $config["serveraddr"], $config["username"], $config["password"]);
+        return new DbClient_S($conn, $cfg["serveraddr"], $cfg["username"], $cfg["password"]);
     }
 
     static public function Default() {
@@ -67,13 +49,13 @@ class DbClient extends \Physler\Entity\DeprecatedInterface {
         ])->SelectDb(Config::MYSQL_DATABASE);
 
         return $db;        
-    }
+    } 
 
     /**
      * Select a database on the SQL server
      * @param string $database_name The name of the database
      * @return 
-     * @throws \Physler\Db\Exception\QueryErrorException if the client fails to grab the database
+     * @throws \EMP\Db\Exception\QueryErrorException if the client fails to grab the database
      */
     public function SelectDb($database_name) {
         $this->connection->select_db($database_name);
@@ -85,9 +67,17 @@ class DbClient extends \Physler\Entity\DeprecatedInterface {
      * Make and post an SQL query to the connected database
      * @param string $sql The SQL query to input.
      * @return mysqli_result Result data
-     * @throws \Physler\Db\Exception\QueryErrorException if the client fails to pass a query through.
+     * @throws \EMP\Db\Exception\QueryErrorException if the client fails to pass a query through.
      */    
-    public function Query($sql) {
+    public function Query($sql, $args = []) {
+        $sargs = [];
+        for ($i=0; $i < count($args); $i++) { 
+            array_push($sargs, $this->connection->real_escape_string($args[$i]));            
+        }
+
+        $sql = sprintf($sql, ...$sargs);
+
+
         $result = $this->connection->query($sql);
 
         if ( $this->connection->error ) {
@@ -97,15 +87,35 @@ class DbClient extends \Physler\Entity\DeprecatedInterface {
         return $result;
     }
 
+
+    /**
+     * Make and post an SQL query to the connected
+     * database and output the results into an
+     * object-oriented output
+     *
+     * @param string $sql
+     * @return array|object
+     */
+    public function QueryJson($sql, $args = [], $array = false) {
+        $results = $this->Query($sql, $args)->fetch_all(MYSQLI_ASSOC);
+        if ($array) return $results;
+        
+        $restable = [];
+        for ($i=0; $i < count( $results ); $i++) { 
+            array_push($restable, (object)$results[$i]);
+        }
+        return $restable;
+    }
+
     protected function ColumnData($table) {
         $db = DbClient_S::Default();
 
-        $column_query = $db->Query("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='{$this->selected_database}' AND `TABLE_NAME`='{$table}';");
+        // $column_query = $db->Query("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='{$this->selected_database}' AND `TABLE_NAME`='{$table}';");
 
         $columns = [];
-        for ($i=0; $i < $column_query->num_rows; $i++) { 
-            array_push($columns, $column_query->fetch_row()[0]);            
-        }
+        // for ($i=0; $i < $column_query->num_rows; $i++) { 
+        //     array_push($columns, $column_query->fetch_row()[0]);            
+        // }
 
         return $columns;
     }

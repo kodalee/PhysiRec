@@ -3,7 +3,7 @@
 namespace Physler\Controller\Api;
 
 use DateTime;
-use Physler\Db\DbClient;
+use Physler\Db\DbClient_S;
 use Physler\Session\SessionVisitor;
 use function Physler\HandlePlaceholders;
 use function Physler\StrTimeElapsed;
@@ -35,6 +35,7 @@ class AppController extends BaseController {
      */
     public function page() {
         global $sesh;
+        usleep(500000);
         $strErrorDesc = '';
         $method = $this->getMethod();
         $argq = $this->getQuery();
@@ -77,11 +78,9 @@ class AppController extends BaseController {
         $day = $argq["day"];
 
         if ($method == 'GET') {
-            $db = DbClient::Default();
-            $response = $db->Query("SELECT * FROM `physler_daily_messages` WHERE day='$day';");
-
-            $ret = $db->Handle($response, "physler_daily_messages", EXPECT_ANYTHING);            
-            $this->outputJson($ret);
+            $db = DbClient_S::Default();
+            $response = $db->QueryJson("SELECT * FROM `physler_daily_messages` WHERE day = %d", [$day], true);
+            $this->outputJson($response[rand(0, count($response) - 1)]);
         }
     }
 

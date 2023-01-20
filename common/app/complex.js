@@ -274,7 +274,7 @@ document.querySelectorAll("btn,a").forEach(_btn => {
     })
 })
 
-var desktopNavBtns = document.querySelectorAll("#sidebarMenu .nav-link");
+var desktopNavBtns = document.querySelectorAll(".pnav .nav-link");
 desktopNavBtns.forEach(dbn => {
     dbn.addEventListener("click", () => {
         desktopNavBtns.forEach(_dbn => {

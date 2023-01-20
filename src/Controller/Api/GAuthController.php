@@ -50,7 +50,7 @@ class GAuthController extends BaseController {
             }
 
             $sesh->SetVar("email", $guser->email);
-            header("Location: /");
+            header("Location: /?anim=1");
         }
     }
     /**

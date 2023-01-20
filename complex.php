@@ -3,6 +3,7 @@
 require_once __DIR__ . "/src/Bootstrapper.php";
 
 use Physler\Session\SessionVisitor;
+
 $user = SessionVisitor::GetActive()->GetVisitorUser();
 
 if ($user == false) {
@@ -76,6 +77,39 @@ if ($user == false) {
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
+
+        ul.pnav {
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            margin: 0 auto;
+            margin-left: 0;
+        }
+
+        .pnav .nav-link {
+            transition: .2s;
+            background: transparent;
+            border: 1px solid transparent;
+            padding: 10px 20px;
+        }
+
+        .pnav .nav-link:hover {
+            background: #ffffff1b;
+            border: 1px solid #ffffff55;
+            border-radius: 1rem;
+        }
+
+        .pnav li.nav-item {
+            margin: 0 20px;
+        }
+
+        .pnav .nav-link.active {
+            border-radius: 1rem;
+            border: 1px solid #1e6aff75;
+            background: #1e6aff05;
+            color: #6595f2;
+        }
     </style>
 
     <!-- Custom styles for this template -->
@@ -88,6 +122,26 @@ if ($user == false) {
 <body class="dark-mode not-shown ambient-lighting">
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#"><img width="120px" src="/mat/img/woosh.png"></a>
+        <ul class="pnav">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/complex.php/dashboard" data-ajax="dashboard">
+                    <i class="fas fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/complex.php/activity" data-ajax="activity">
+                    <i class="fas fa-wave-pulse"></i>
+                    Activity
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/complex.php/settings" data-ajax="settings">
+                    <i class="fas fa-cogs"></i>
+                    Preferences
+                </a>
+            </li>
+        </ul>
         <div class="navbar-nav">
             <div class="nav-item text-nowrap mx-2">
                 <span class="me-1"><?= $user->display_name ?></span>
@@ -98,32 +152,7 @@ if ($user == false) {
 
     <div class="container-fluid">
         <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
-                <div class="position-sticky pt-3 sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#dashboard" data-ajax="dashboard">
-                                <i class="fas fa-house"></i>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#activity" data-ajax="activity">
-                                <i class="fas fa-wave-pulse"></i>
-                                Activity
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#settings" data-ajax="settings">
-                                <i class="fas fa-cogs"></i>
-                                Preferences
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-            <main class="col-md-9 ms-sm-auto col-lg-10.5 px-md-4" id="ajax-container">
+            <main class="col-md-9 px-md-4 page-shown mx-auto" id="ajax-container">
 
             </main>
         </div>

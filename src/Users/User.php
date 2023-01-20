@@ -4,7 +4,7 @@ namespace Physler\User;
 
 use DateTime;
 use Physler\Config;
-use Physler\Db\DbClient;
+use Physler\Db\DbClient_S;
 use Physler\User\Exception;
 use stdClass;
 
@@ -33,14 +33,14 @@ class User {
     public $preferences;
 
     public function __construct($userInfo) {
-        $db = DbClient::Default();
+        $db = DbClient_S::Default();
 
-        $this->id = $userInfo["id"];
-        $this->display_name = $userInfo["display_name"];
-        $this->real_name = $userInfo["real_name"];
-        $this->profile_picture = $userInfo["profile_picture"];
-        $this->email = $userInfo["email"];
-        $this->user_groups = $userInfo["user_groups"];
+        $this->id = $userInfo->id;
+        $this->display_name = $userInfo->display_name;
+        $this->real_name = $userInfo->real_name;
+        $this->profile_picture = $userInfo->profile_picture;
+        $this->email = $userInfo->email;
+        $this->user_groups = $userInfo->user_groups;
         $this->activity_list = [];
 
         $qry = $db->Query("SELECT preference_data FROM `physler_user_preferences` WHERE `user_id` = '{$this->id}'");
@@ -93,13 +93,13 @@ class User {
     }
 
     public function AddActivity($activity, $explaination, $duration) {
-        $db = DbClient::Default();
+        $db = DbClient_S::Default();
         $db->Query("INSERT INTO `physler_activity_logs` (`activity_id`, `user_id`, `activity_catagory`, `activity_description`, `activity_duration`, `timestamp`) VALUES (NULL, '{$this->id}', '$activity', '$explaination', '$duration', '".time()."');");
         return true;
     }
 
     public function ChangeSetting($setting, $new_value) {
-        $db = DbClient::Default();
+        $db = DbClient_S::Default();
         $preferences = (array) $this->preferences;
         $preferences[$setting] = $new_value;
 
@@ -109,7 +109,7 @@ class User {
     }
 
     public static function MakeUser($email, $profile_picture, $names, $locale) {
-        $db = DbClient::Default();
+        $db = DbClient_S::Default();
 
         return $db->Query("INSERT INTO `physler_user` (`id`, `display_name`, `real_name`, `email`, `profile_picture`, `user_groups`) VALUES (NULL, '{$names["first"]}', '{$names["first"]} {$names["last"]}', '{$email}', '{$profile_picture}', '0');");
     }
@@ -123,26 +123,17 @@ class User {
      * @return User
      */
     public static function GetByEmail($email_address, $on_login) {
-        $db = DbClient::Default();
+        $db = DbClient_S::Default();
 
-        $qry = $db->Query("SELECT * FROM `physler_user` WHERE `email` = '$email_address'");
-        if ($qry->num_rows == 1) {   
-            $ordered_row = $qry->fetch_row();
-            
-            $catagorized_data = [
-                "id" => $ordered_row[0],
-                "display_name" => $ordered_row[1],
-                "real_name" => $ordered_row[2],
-                "email" => $ordered_row[3],
-                "profile_picture" => $ordered_row[4],
-                "user_groups" => $ordered_row[5]
-            ];
+        $qry = $db->QueryJson("SELECT * FROM `physler_user` WHERE `email` = '%s'", [$email_address]);
+        if (count($qry) > 0) {
+            $usrobj = $qry[0];
 
-            if ( $catagorized_data["display_name"] == null && $on_login == false ) {
+            if ( $usrobj->display_name == null && $on_login == false ) {
                 throw new Exception\UserNotFoundException($email_address, "Failure to catch a display name.");
             }
 
-            return new User($catagorized_data);
+            return new User($usrobj);
         }
         else {
             if ($on_login == false) {

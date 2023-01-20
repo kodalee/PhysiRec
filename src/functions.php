@@ -73,3 +73,7 @@ function StrTimeElapsed($datetime, $full = false) {
 function is_app_hang() {
     return !(isset($_GET["hang"]) && $_GET["hang"] == "1");
 }
+
+function do_splash_animation() {
+    return (isset($_GET["anim"]) && $_GET["anim"] == "1");
+}

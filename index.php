@@ -3,9 +3,11 @@
 require( __DIR__ . "/src/Bootstrapper.php" );
 use Physler\Session\SessionVisitor;
 
+use function Physler\do_splash_animation;
 use function Physler\is_app_hang;
 
 $sm = SessionVisitor::Start();
+$u = $sm->GetVisitorUser();
 
 ?>
 <!DOCTYPE html>
@@ -25,8 +27,19 @@ $sm = SessionVisitor::Start();
 	<link rel="stylesheet" href="/common/app/splash.css">
 	<link rel="stylesheet" href="/common/models/spinner.css">
 </head>
-<body>
+<body class="<?= do_splash_animation()? "ready" : "" ?>">
 	<div class="flex-box">
+		<div class="bottom-info">
+			<?php if ($u != false): ?>
+				Student Logged In
+				<br>
+				User: <?= $u->display_name ?> (<?= $u->email ?>) 
+			<?php else: ?>
+				Unauthenticated
+			<?php endif; ?>
+			<br>
+			<?= GH_REPO_COMMIT_INFO ?>
+		</div>
 		<div class="splash-screen">
 			<div class="splash-stuff">
 				<div class="splash-app-logo">
@@ -51,21 +64,28 @@ $sm = SessionVisitor::Start();
 			</div>
 			<script>
 				<?php if (is_app_hang()): ?>
-				setTimeout(() => {
-					$.get("/api.php/status")
-					.then(res => {
-						$.get("/api.php/gauth/login").then(res => {
-							if (res.login_required) {
-								window.location = res.url;
-							} else {
+
+
+					
+				$.get("/api.php/status")
+				.then(res => {
+					$.get("/api.php/gauth/login").then(res => {
+						if (res.login_required) {
+							window.location = res.url;
+						} else {
+							document.querySelector(".splash-app-logo img").classList.add("active")
+							setTimeout(() => {
+								document.body.classList.add("ready")
+							}, 1000)
+							setTimeout(() => {
 								window.location = "complex.php";
-							}
-						})
+							}, 4000);
+						}
 					})
-					.catch(err => {
-						window.location = "/common/errors/generic_no_internet.html";
-					})
-				}, 4000);
+				})
+				.catch(err => {
+					window.location = "/common/errors/generic_no_internet.html";
+				})
 				<?php endif; ?>
 			</script>
 		</div>

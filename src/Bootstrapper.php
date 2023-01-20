@@ -16,6 +16,7 @@
  */
 
 define("__ROOT__", $_SERVER["DOCUMENT_ROOT"]);
+define("GH_REPO_COMMIT_INFO", "hellokoda/PhysiRec:main #e3a37a0 (Nov 26, 2022)");
 
 const __IMPORTS__ = [
     // Load libraries first
@@ -25,6 +26,9 @@ const __IMPORTS__ = [
     "/config.php",
     "/functions.php",
     "/constants.php",
+
+    "/Entity/DeprecatedInterface.php",
+
     "/Users/User.php",
     "/Users/Exception/UserNotFoundException.php",
     "/Determine.php",
@@ -32,6 +36,7 @@ const __IMPORTS__ = [
     "/Sessions/SessionVisitor.php",
     "/Sessions/Exception/SessionStartException.php",
     "/Db/DbClient.php",
+    "/Db/DbClient_S.php",
     "/Db/Exception/ConnectErrorException.php",
     "/Db/Exception/QueryErrorException.php",
     "/Http/BaseClient.php",
