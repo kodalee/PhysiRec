@@ -150,7 +150,7 @@ if ($user == false) {
         </div>
     </header>
 
-    <div class="container-fluid">
+    <div class="scroll-container">
         <div class="row">
             <main class="col-md-9 px-md-4 page-shown mx-auto" id="ajax-container">
 
