@@ -14,13 +14,12 @@ function getUrlSegments(delimiter = null) {
         urlSegments.shift();
     }
 
-    urlSegments = urlSegments.filter(seg => (seg.length != 0))
-    console.log(urlSegments.filter(seg => (seg.length != 0)))
+    urlSegments = urlSegments.filter(segment => (segment.length != 0))
 
     if (delimiter != null) {
         return urlSegments;
     } else {
-        return urlSegments.join("-")
+        return urlSegments.join("/")
     }
 }
 
@@ -32,7 +31,7 @@ function modPage(appopts) {
     }
 
     if ('script' in appopts && appopts.script != null) {
-        // Enclose the script in a Self-Invoke to prevent globals from being set.
+        // Enclose the script in a Self-Invoke to prevent global variables from being set.
         if (!appopts.script.includes(`"allow globals"`)) {
             console.log(1);
             eval( `(function(){${appopts.script}})();` );
@@ -66,7 +65,7 @@ function modPage(appopts) {
              navi.addEventListener("click", e => {
                  e.preventDefault();
                  getPage(targetPage);
-                 console.log(`Requesting target page ${targetPage} from the remote server.`)
+                 console.log(`Requesting target page '${targetPage}' from the remote server.`)
              })
  
              if (destNavbtns[targetPage]) {
@@ -107,9 +106,6 @@ function getPage(name) {
     }
     REQUEST_FROM_POPSTATE = false
 
-    name = name.split("/")
-    firstPart = name[0];
-    name = name.join("-")
 
     desktopNavBtns.forEach(_dbn => {
         _dbn.classList.remove("active")
@@ -118,8 +114,8 @@ function getPage(name) {
         _mbn.classList.remove("active")
     })
 
-    if (destNavbtns[firstPart]) {
-        destNavbtns[firstPart].forEach(elemnt => {
+    if (destNavbtns[name]) {
+        destNavbtns[name].forEach(elemnt => {
             if ((elemnt.classList.contains("nav-btn") || elemnt.classList.contains("nav-link")) && !elemnt.classList.contains("active")) {
                 elemnt.classList.add("active");
             }
@@ -133,7 +129,7 @@ function getPage(name) {
     AppHistory.push(name);
     document.body.setAttribute("catagory", "null")
 
-    $.get(`/api.php/app/page/${name}.json`)
+    $.get(`/api/app/page/${name}.json`)
 
     .then(data => {
         modPage({
@@ -148,7 +144,7 @@ function getPage(name) {
     .catch(() => {
         modPage({
             show: true,
-            html: `<div class="text-center"><h1 style="font-size: 800%;" class="m-5">404.</h1> <p>We don't know what you were looking for but we couldn't find it. Do you need help finding your way home?</p> <div><button data-ajax="dashboard" class="btn btn-primary w-25 mx-2">Yes, lets go!</button></div></div>`
+            html: `<div class="text-center"><h1 style="font-size: 800%;" class="m-5">Uh oh.</h1> <p>There was an issue while fetching your requested page. This might be an issue with your internet connection or our servers. Please try again later or restart your PhysiRec app.</p> <div><button data-ajax="dashboard" class="btn btn-primary w-25 mx-2">Yes, lets go!</button></div></div>`
         })
         registerAjaxNav()
     })
@@ -157,7 +153,7 @@ function getPage(name) {
 
 
 
-$(function() {
+document.addEventListener("DOMContentLoaded", function() {
     var docBody = $("body")[0]
     docBody.classList.remove("not-shown");
 
@@ -167,7 +163,8 @@ $(function() {
 
 
     segments = getUrlSegments("/")
-    if (segments > 0) {
+    console.log("hi!")
+    if (segments.length > 0) {
         getPage(segments.join("/"))
     }
     else {
@@ -292,9 +289,10 @@ mobileNavBtns.forEach(mbn => {
         })
         mbn.classList.add("active")
     })
+    
 });
 
-$.get("/api.php/gauth/firsttime").then(res => {
+$.get("/api/gauth/firsttime").then(res => {
     if (res.firsttime == null) {
         getPage("firstlogin")
     }

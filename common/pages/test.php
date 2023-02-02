@@ -9,7 +9,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 my-2">
+        <div class="col-md-6 ">
             <div class="card bg-blur">
                 <div class="card-header  text-center">
                     <h5 class="my-1">Message of the day</h4>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 my-2">
+        <div class="col-md-6 ">
             <div class="card bg-blur">
                 <div class="card-header  text-center">
                     <h5 class="my-1">My latest activity</h4>
@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 my-2">
+        <div class="col-md-6 ">
             <div class="card bg-blur">
                 <div class="card-header  text-center">
                     <h5 class="my-1">Quick Dash</h4>
@@ -41,23 +41,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 my-2">
+        <div class="col-md-6 ">
             <div class="card bg-blur">
                 <div class="card-header  text-center">
                     <h5 class="my-1">My Goals</h4>
                 </div>
                 <div class="card-body goals">
-                    <div class="card bg-blur w-100 my-2 daily">
+                    <div class="card bg-blur w-100  daily">
                         <div class="card-body">
                             <div><span class="text-success">Daily Goal: </span>%:daily_goal_item</div>
                         </div>
                     </div>
-                    <div class="card bg-blur w-100 my-2 weekly">
+                    <div class="card bg-blur w-100  weekly">
                         <div class="card-body">
                             <div><span class="text-warning">Weekly Goal: </span>%:weekly_goal_item</div>
                         </div>
                     </div>
-                    <div class="card bg-blur w-100 my-2 monthly">
+                    <div class="card bg-blur w-100  monthly">
                         <div class="card-body">
                             <div><span class="text-danger">Monthly Goal: </span>%:monthly_goal_item</div>
                         </div>

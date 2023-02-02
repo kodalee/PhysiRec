@@ -1,6 +1,12 @@
+<?php
+
+use Physler\Session\SessionVisitor;
+$user = SessionVisitor::GetActive()->GetVisitorUser();
+
+?>
 <div class="mx-2 p-2 mt-3">
     <div>
-        <h1 class="h4 mb-0">Welcome back, %:name! 👋</h1>
+        <h1 class="h4 mb-0">Welcome back, <?= $user->display_name ?>! 👋</h1>
     </div>
     <div>
         <h4 class="my-0">It's <span class="time text-primary">0:00 PM</span> on a <span
@@ -8,9 +14,9 @@
     </div>
 </div>
 <div class="container-fluid">
-    <div class="row flex-row-reverse">
+    <div class="row flex-row-reverse justify-content-center">
         <div class="col-lg-6">
-            <div class="card bg-blur my-2">
+            <div class="card bg-blur ">
                 <div class="card-header  text-center">
                     <h5 class="my-1">Message of the day</h4>
                 </div>
@@ -18,7 +24,7 @@
 
                 </div>
             </div>
-            <div class="card bg-blur my-2">
+            <div class="card bg-blur ">
                 <div class="card-header text-center">
                     <h5 class="my-1">My latest activity</h4>
                 </div>
@@ -28,7 +34,7 @@
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="card bg-blur my-2">
+            <div class="card bg-blur ">
                 <div class="card-header  text-center">
                     <h5 class="my-1">Quick Dash</h4>
                 </div>
@@ -36,22 +42,22 @@
                     <button class="btn btn-primary w-100" href="#" data-ajax="activity">Record my activity</button>
                 </div>
             </div>
-            <div class="card bg-blur my-2">
+            <div class="card bg-blur ">
                 <div class="card-header  text-center">
                     <h5 class="my-1">My Goals</h4>
                 </div>
                 <div class="card-body goals">
-                    <div class="card bg-blur w-100 my-2 daily">
+                    <div class="card bg-blur w-100  daily">
                         <div class="card-body">
                             <div><span class="text-success">Daily Goal: </span>%:daily_goal_item</div>
                         </div>
                     </div>
-                    <div class="card bg-blur w-100 my-2 weekly">
+                    <div class="card bg-blur w-100  weekly">
                         <div class="card-body">
                             <div><span class="text-warning">Weekly Goal: </span>%:weekly_goal_item</div>
                         </div>
                     </div>
-                    <div class="card bg-blur w-100 my-2 monthly">
+                    <div class="card bg-blur w-100  monthly">
                         <div class="card-body">
                             <div><span class="text-danger">Monthly Goal: </span>%:monthly_goal_item</div>
                         </div>
@@ -78,7 +84,7 @@
         "Saturday"      // 6
     ];
 
-    $.get("/api.php/app/motd/?day="+(new Date().getDay()))
+    $.get("/api/app/motd/?day="+(new Date().getDay()))
     .then(data => {
         _motdContainer.innerHTML = data.message;
     })

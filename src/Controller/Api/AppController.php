@@ -16,7 +16,7 @@ class AppController extends BaseController {
      *
      * @return string
      */
-    protected function __placeholders($page) {
+    protected function __assign($page) {
         $user = SessionVisitor::GetActive()->GetVisitorUser();
 
         // $page = str_replace("%:");
@@ -41,16 +41,45 @@ class AppController extends BaseController {
         $argq = $this->getQuery();
         $segments = $this->getSegments();
 
-        $pagePath = "common/pages/%s.xhtml";
-        $pageName = str_replace(".json", "", $segments[4]);
-
-        $pageLocation = sprintf($pagePath, $pageName);
-        if (!file_exists($pageLocation)) {
-            $pageLocation = sprintf($pagePath, PAGE_SYSMSG_NOT_FOUND);
+        $pagePath = __ROOT__."/common/pages/%s";
+        
+        $pageNames = [];
+        for ($i=4; $i < count($segments); $i++) { 
+            array_push($pageNames, $segments[$i]);
         }
 
-        $pageContents = file_get_contents($pageLocation);
-        $pageScript = null;
+        $pageName = str_replace(".json", "", join("/", $pageNames));
+        $pageLocation = sprintf($pagePath, $pageName);
+
+        if (!is_dir($pageLocation)) {
+            if (!file_exists($pageLocation . ".php")) {
+                $pageLocation = PAGE_SYSMSG_NOT_FOUND;
+            }
+            else {
+                $pageLocation = $pageLocation . ".php";
+            }
+        }
+        else {
+            if (!file_exists($pageLocation . "/index.php")) {
+                $pageLocation = PAGE_SYSMSG_NOT_FOUND;
+            }
+            else {
+                $pageLocation = $pageLocation . "/index.php";
+            }
+        }
+
+        ob_start();
+        extract(get_defined_vars());
+        include $pageLocation;
+        $pageContents = ob_get_clean();
+
+        /**
+        * Terrible method of variable implementation. Ignore! 
+        */
+        // $pageContents = file_get_contents($pageLocation);
+        // $pageScript = null;
+        // extract(get_defined_vars());
+        // $pageContents = preg_replace('/\{\$(\w+)\}/', ${'$$1'}, $pageContents);
 
         if (strstr($pageContents, "<script>")) {            
             $pageParts = explode("<script>", $pageContents);
@@ -62,8 +91,8 @@ class AppController extends BaseController {
 
         if ($method == 'GET') {
             $this->outputJson([
-                "pageHtml" => $this->__placeholders($pageParts[0]),
-                "script" => $pageScript
+                "pageHtml" => $this->__assign($pageParts[0]),
+                "script" => $pageScript ?? null
             ]);
         }
     }

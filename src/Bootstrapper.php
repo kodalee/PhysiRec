@@ -16,7 +16,7 @@
  */
 
 define("__ROOT__", $_SERVER["DOCUMENT_ROOT"]);
-define("GH_REPO_COMMIT_INFO", "hellokoda/PhysiRec:main #e3a37a0 (Nov 26, 2022)");
+define("GH_REPO_COMMIT_INFO", "hellokoda/PhysiRec:main #ea28c8f (Jan 19, 2022)");
 
 const __IMPORTS__ = [
     // Load libraries first
@@ -28,6 +28,7 @@ const __IMPORTS__ = [
     "/constants.php",
 
     "/Entity/DeprecatedInterface.php",
+    "/Entity/User.php",
 
     "/Users/User.php",
     "/Users/Exception/UserNotFoundException.php",

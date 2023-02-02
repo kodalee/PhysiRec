@@ -1,3 +1,7 @@
+const isInstalled = ()  => {
+  return (window.matchMedia('(display-mode: standalone)').matches)
+}
+
 const registerServiceWorker = async () => {
   if ("serviceWorker" in navigator) {
     try {

@@ -157,6 +157,16 @@ main.page-shown {
 }
 .mobile-navbar-bg {
 	background: #101010;
+	bottom:0;
+	left:0;
+	right:0;
+	z-index:1000;
+	
+	//give nav it's own compsite layer
+	will-change:transform;
+	transform: translateZ(0);
+	
+	display:flex;	
 }
 .mobile-navbar {
 	margin-bottom: 20px;

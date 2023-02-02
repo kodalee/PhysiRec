@@ -17,10 +17,15 @@ $u = $sm->GetVisitorUser();
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="manifest" href="app.webmanifest">
-	<link rel="apple-touch-icon" href="/mat/img/512.png">
+	<link rel="manifest" href="/app.webmanifest">
 
-	<script src="pwa_init.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/mat/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/mat/img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/mat/img/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/mat/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/mat/img/favicon-16x16.png">
+
+	<script src="/pwa_init.js"></script>
 	<script src="/common/vendor/jquery/script.js"></script>
 	<title>PhysiRec</title>
 	<link rel="stylesheet" href="/common/app/imports.css">
@@ -67,9 +72,9 @@ $u = $sm->GetVisitorUser();
 
 
 					
-				$.get("/api.php/status")
+				$.get("/api/status")
 				.then(res => {
-					$.get("/api.php/gauth/login").then(res => {
+					$.get("/api/gauth/login").then(res => {
 						if (res.login_required) {
 							window.location = res.url;
 						} else {

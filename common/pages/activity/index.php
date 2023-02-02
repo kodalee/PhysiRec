@@ -5,8 +5,8 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 my-2">
-            <div class="card bg-blur">
+        <div class="col-md-6 ">
+        <div class="card bg-blur">
                 <div class="card-header text-center">
                     <h5 class="my-1">Record my activity</h4>
                 </div>
@@ -24,13 +24,13 @@
                         </button>
                     </div>
                     <div class="movement-form">
-                        <div class="form-group my-2 d-flex">
+                        <div class="form-group d-flex">
                             <div class="form-input-label">
                                 <input class="form-control" type="text" placeholder=" " id="actm-explain">
                                 <label>Explain what you did in movement.</label>
                             </div>
                         </div>
-                        <div class="form-group my-2 d-flex">
+                        <div class="form-group d-flex">
                             <div class="form-input-label">
                                 <input class="form-control" type="text" placeholder=" " id="actm-duration">
                                 <label>For how long?</label>
@@ -40,14 +40,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 my-2">
+        <div class="col-md-6 ">
             <div class="card bg-blur">
                 <div class="card-header text-center">
                     <h5 class="my-1">My heartbeat</h4>
                 </div>
                 <div class="card-body">
                     <div class="buttons">
-                        <button class="btn-danger btn w-100" data-ajax="activity/bpmlogger" interactive>Log my current heart
+                        <button class="btn-danger btn w-100" data-ajax="activity/heartbeat" interactive>Log my current heart
                             beat</button>
                     </div>
                     <div class="bpm-history">

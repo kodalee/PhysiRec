@@ -10,4 +10,4 @@ const PROMPT = "prompt";
 const CONSENT = "consent";
 const SELECT_ACCOUNT = "select_account";
 
-const PAGE_SYSMSG_NOT_FOUND = "sysmsg_not_found";
+const PAGE_SYSMSG_NOT_FOUND = __ROOT__."/common/pages/sysmsg_not_found.php";

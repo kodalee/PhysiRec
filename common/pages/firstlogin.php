@@ -8,7 +8,7 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12 my-2">
+        <div class="col-md-12 ">
             <div class="card bg-blur">
                 <div class="card-header  text-center">
                     <h5 class="my-1">First Time Form</h5>

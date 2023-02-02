@@ -5,7 +5,7 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 my-2">
+        <div class="col-md-6 ">
             <div class="card bg-blur">
                 <div class="card-header">
                     <h5 class="mt-1 mb-0">Personalization</h4>
@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 my-2">
+        <div class="col-md-6 ">
             <div class="card bg-blur">
                 <div class="card-header text-center">
                     <h5 class="my-1">My heartbeat</h4>

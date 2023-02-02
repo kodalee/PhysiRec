@@ -8,30 +8,13 @@ use Physler\Db\DbClient_S;
 use Physler\User\Exception;
 use stdClass;
 
-$activityEmojis = [
+const activity_emojis = [
     "MOVEMENT" => "🏃‍♂️",
     "LIFTING" => "🏋️‍♂️",
     "OTHER" => "❓"
 ];
 
-class User {
-    /** @var int */
-    public $id;
-    /** @var string */
-    public $display_name;
-    /** @var string */
-    public $real_name;
-    /** @var string */
-    public $profile_picture;
-    /** @var string */
-    public $email;
-    /** @var string */
-    protected $user_groups;
-    /** @var array */
-    protected $activity_list;
-    /** @var array */
-    public $preferences;
-
+class User extends \Physler\Entity\User {
     public function __construct($userInfo) {
         $db = DbClient_S::Default();
 
@@ -68,7 +51,7 @@ class User {
     }
 
     public function GetHtmlActivityList() {
-        global $activityEmojis;
+        $activityEmojis = activity_emojis;
         if (COUNT( $this->activity_list ) > 0) {
             $ar = "<ul class='my-0 latest-activity'>";
             for ($i=0; $i < COUNT( $this->activity_list ); $i++) { 

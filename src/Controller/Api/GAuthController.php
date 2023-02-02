@@ -33,6 +33,7 @@ class GAuthController extends BaseController {
 
             if (!ISSET($guser->hd) || $guser->hd != Config::EDU_EMAIL_SUFFIX) {
                 header("Location: /common/errors/generic_user_not_allowed.html");
+                exit;
             }
 
             $user = User::GetByEmail($guser->email, true);

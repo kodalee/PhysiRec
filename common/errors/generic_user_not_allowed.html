@@ -7,6 +7,11 @@
 
 	<link rel="apple-touch-icon" href="/mat/img/512.png">
 
+	<link rel="manifest" href="/app.webmanifest">
+	<link rel="apple-touch-icon" href="/mat/img/512.png">
+
+	<script src="/pwa_init.js"></script>
+
 	<script src="/common/vendor/jquery/script.js"></script>
 	<title>PhysiRec</title>
 	<link rel="stylesheet" href="/common/app/imports.css">
@@ -15,6 +20,11 @@
 </head>
 <body class="err">
 	<div class="flex-box">
+		<div class="bottom-info mb-4">
+			Error: generic_user_not_allowed
+			<br>
+			Static; No extra information.
+		</div>
 		<div class="splash-screen">
 			<div class="splash-stuff">
 				<div class="splash-app-logo">
@@ -24,7 +34,7 @@
                     <h4 class="my-1">Uh oh!</h4>
                     The account you are trying to use isn't permitted.
                     <br>
-                    Please login with your educational account. <small>(Error: generic_user_not_allowed)</small>
+                    Please login with your educational account.
                     <br>
                     <a href="/">Try again</a>
                 </div>
