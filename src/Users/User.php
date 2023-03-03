@@ -9,9 +9,9 @@ use Physler\User\Exception;
 use stdClass;
 
 const activity_emojis = [
-    "MOVEMENT" => "🏃‍♂️",
-    "LIFTING" => "🏋️‍♂️",
-    "OTHER" => "❓"
+    "movement" => '<i class="fad fa-person-running"></i>',
+    "muscles" => '<i class="fad fa-dumbbell"></i>',
+    "other" => '<i class="fad fa-comment-dots"></i>'
 ];
 
 class User extends \Physler\Entity\User {
@@ -26,28 +26,27 @@ class User extends \Physler\Entity\User {
         $this->user_groups = $userInfo->user_groups;
         $this->activity_list = [];
 
-        $qry = $db->Query("SELECT preference_data FROM `physler_user_preferences` WHERE `user_id` = '{$this->id}'");
-        if ($qry->num_rows == 1) {   
-            $this->preferences = json_decode($qry->fetch_row()[0], true);
-        }
+        $qry = $db->QueryJson("SELECT preference_data FROM `physler_user_preferences` WHERE `user_id` = '{$this->id}'");
+        $this->preferences = $qry;
 
-        $qry = $db->Query("SELECT * FROM `physler_activity_logs` WHERE user_id = {$this->id}");
-        if ($qry->num_rows > 0) {
-            $activities = [];
-            for ($i=0; $i < $qry->num_rows; $i++) { 
-                $dat = $qry->fetch_row();
-                array_push($activities, [
-                    "activity_id" => $dat[0],
-                    "user_id" => $dat[1],
-                    "catagory" => $dat[2],
-                    "description" => $dat[3],
-                    "duration" => $dat[4],
-                    "timestamp" => $dat[5]
-                ]);
-            }
+        $this->activity_list = $db->QueryJson("SELECT * FROM `physler_activity_logs` WHERE user_id = {$this->id}");
+        $this->heartbeat_logs = $db->QueryJson("SELECT * FROM `physler_heartbeat_logs` WHERE user_id = {$this->id}");
+        // if ($qry->num_rows > 0) {
+        //     $activities = [];
+        //     for ($i=0; $i < $qry->num_rows; $i++) { 
+        //         $dat = $qry->fetch_row();
+        //         array_push($activities, [
+        //             "activity_id" => $dat[0],
+        //             "user_id" => $dat[1],
+        //             "catagory" => $dat[2],
+        //             "description" => $dat[3],
+        //             "duration" => $dat[4],
+        //             "timestamp" => $dat[5]
+        //         ]);
+        //     }
 
-            $this->activity_list = $activities;
-        }
+        //     $this->activity_list = $activities;
+        // }
     }
 
     public function GetHtmlActivityList() {
@@ -56,10 +55,10 @@ class User extends \Physler\Entity\User {
             $ar = "<ul class='my-0 latest-activity'>";
             for ($i=0; $i < COUNT( $this->activity_list ); $i++) { 
                 $act = $this->activity_list[$i];
-                $currentDay = date("d/m/Y");
-                $activityDay = date("d/m/Y", strtotime($act["duration"]));
+                $currentDay = date("d/m/Y", time()); 
+                $activityDay = date("d/m/Y", intval($act->timestamp));
                 if ($currentDay == $activityDay) {
-                    $ar = $ar . "<li>{$activityEmojis[$act["catagory"]]} {$act["description"]}</li>";
+                    $ar = $ar . "<li>{$activityEmojis[$act->activity_catagory]} {$act->activity_description}</li>";
                 }
             }
             $ar = $ar . "</ul>";
@@ -75,9 +74,53 @@ class User extends \Physler\Entity\User {
         }
     }
 
-    public function AddActivity($activity, $explaination, $duration) {
+    public function GetHtmlHeartbeatLogs() {
+        if (COUNT( $this->heartbeat_logs ) > 0) {
+            $ar = "<ul class='my-0 heartbeat-logs'>";
+            for ($i=0; $i < COUNT( $this->heartbeat_logs ); $i++) { 
+                $act = $this->heartbeat_logs[$i];
+                $ar = $ar . "<li>On ".date("m/d/Y", time()).", you tested {$act->heartbeat_bpm}bpm while {$act->activity_catagory}</li>";
+            }
+            $ar = $ar . "</ul>";
+            if (strpos($ar, "<li>") !== false) {
+                return $ar;
+            }
+            else {
+                return "<p>It looks like you don't have any heartbeats logs</p>";
+            }
+        }
+        else {
+            return "<p>It looks like you don't have any heartbeats logs.</p>";
+        }
+    }
+
+    public function getHeartbeatLogs() {
+        return $this->heartbeat_logs;
+    }
+    public function getActivityList() {
+        return $this->activity_list;
+    }
+
+    public function AddActivity($activity, $explaination, $duration, $time) {
         $db = DbClient_S::Default();
-        $db->Query("INSERT INTO `physler_activity_logs` (`activity_id`, `user_id`, `activity_catagory`, `activity_description`, `activity_duration`, `timestamp`) VALUES (NULL, '{$this->id}', '$activity', '$explaination', '$duration', '".time()."');");
+        $db->Query("INSERT INTO `physler_activity_logs` (`activity_id`, `user_id`, `activity_catagory`, `activity_description`, `activity_duration`, `timestamp`) VALUES (NULL, '%d', '%s', '%s', '%s', '%s');", [
+            $this->id,
+            $activity,
+            $explaination,
+            $duration,
+            $time
+        ]);
+        return true;
+    }
+
+    public function LogHeartbeat($activity, $bpm) {
+        $db = DbClient_S::Default();
+        $db->Query("INSERT INTO `physler_heartbeat_logs` (`heartbeat_id`, `user_id`, `activity_catagory`, `heartbeat_bpm`, `timestamp`) VALUES (NULL, '%d', '%s', '%s', '%s');", [
+            $this->id,
+            $activity,
+            $bpm,
+            time()
+        ]);
         return true;
     }
 
@@ -120,7 +163,7 @@ class User extends \Physler\Entity\User {
         }
         else {
             if ($on_login == false) {
-                throw new Exception\UserNotFoundException($email_address, "Failure to get a mysql row from the results.");
+                throw new Exception\UserNotFoundException($email_address, "No user found on required login.");
             }
             return null;
         }
@@ -141,14 +184,45 @@ class User extends \Physler\Entity\User {
     }
 
     public function IsSuperuser() {
-        return IN_ARRAY( '99', $this->GetUserGroups() );
+        return IN_ARRAY( '20', $this->GetUserGroups() );
     }
 
     public function IsTeacher() {
-        return IN_ARRAY( '1', $this->GetUserGroups() );
+        return IN_ARRAY( '10', $this->GetUserGroups() );
     }
 
     public function IsStudent() {
         return IN_ARRAY( '0', $this->GetUserGroups() );
-    }    
+    }
+
+    public function GetUserRole() {
+        if ($this->IsSuperuser()) {
+            return 20;
+        }
+        else if ($this->IsTeacher()) {
+            return 10;
+        }
+        else if ($this->IsStudent()) {
+            return 0;
+        }
+        else {
+            return null;
+        }
+    }
+     
+    public function CheckPermission($permission_min) {
+        $g = $this->user_groups;
+        if ($g >= $permission_min) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function GetStudents() {
+        $db = DbClient_S::Default();
+        $qry = $db->QueryJson("SELECT * FROM `physler_user` WHERE `teacher` = %d;", [$this->id]);
+        return $qry;
+    }
 }

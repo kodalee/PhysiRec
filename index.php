@@ -36,7 +36,19 @@ $u = $sm->GetVisitorUser();
 	<div class="flex-box">
 		<div class="bottom-info">
 			<?php if ($u != false): ?>
-				Student Logged In
+				<?php
+					switch ($u->GetUserRole()) {
+						case G_SUPERUSER:
+							echo "Superuser";
+							break;
+						case G_TEACHER:
+							echo "Teacher";
+							break;
+						case G_STUDENT:
+							echo "Student";
+							break;
+					}
+				?> Logged In
 				<br>
 				User: <?= $u->display_name ?> (<?= $u->email ?>) 
 			<?php else: ?>

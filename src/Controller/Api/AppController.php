@@ -3,6 +3,7 @@
 namespace Physler\Controller\Api;
 
 use DateTime;
+use JShrink\Minifier;
 use Physler\Db\DbClient_S;
 use Physler\Session\SessionVisitor;
 use function Physler\HandlePlaceholders;
@@ -23,7 +24,9 @@ class AppController extends BaseController {
         return HandlePlaceholders($page, [
             ["name", $user->display_name],
             ["latest_activity", $user->GetHtmlActivityList()],
-            ["activity_last_update_time", "Last updated: ".StrTimeElapsed(time())],
+            ["activity_last_update_time", "Last activity was ".StrTimeElapsed($user->getActivityList()[array_key_last($user->getActivityList())]->timestamp ?? "0")],
+            ["heartbeat_log", $user->GetHtmlHeartbeatLogs()],
+            // ["heartbeat_last_update_time", "Last tested: ".StrTimeElapsed($user->getHeartbeatLogs()[array_key_last($user->getHeartbeatLogs())]->timestamp ?? "0")],
             ["daily_goal_item", "Nothing yet..."],
             ["weekly_goal_item", "Nothing yet..."],
             ["monthly_goal_item", "Nothing yet..."]
@@ -35,7 +38,6 @@ class AppController extends BaseController {
      */
     public function page() {
         global $sesh;
-        usleep(500000);
         $strErrorDesc = '';
         $method = $this->getMethod();
         $argq = $this->getQuery();
@@ -83,7 +85,7 @@ class AppController extends BaseController {
 
         if (strstr($pageContents, "<script>")) {            
             $pageParts = explode("<script>", $pageContents);
-            $pageScript = str_replace("</script>", "", $pageParts[1]);
+            $pageScript = Minifier::minify(str_replace("</script>", "", $pageParts[1]), array('flaggedComments' => false));
         }
         else {
             $pageParts = [$pageContents];
@@ -113,20 +115,4 @@ class AppController extends BaseController {
         }
     }
 
-    public function activities() {
-        global $sesh;
-        $strErrorDesc = '';
-        $method = $this->getMethod();
-        $segments = $this->getSegments();
-        
-        if ($method == 'POST') {
-            $argq = $_POST;
-            $activity = $argq["activity"];
-            $explanation = $argq["explanation"];
-            $duration = $argq["duration"];
-            
-            $sesh->GetVisitorUser()->AddActivity($activity, $explanation, $duration);
-            $this->outputJson(["success" => true, "requestData" => $argq]);
-        }
-    }
 }

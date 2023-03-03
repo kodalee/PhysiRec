@@ -37,8 +37,9 @@ function HandlePlaceholders($content, $placeholder_array) {
  * @return string
  */
 function StrTimeElapsed($datetime, $full = false) {
+    if ($datetime == 0) {return "never";}
     $now = new DateTime("@".time());
-    $ago = new DateTime("@".$datetime);
+    $ago = new DateTime("@".(string)$datetime);
     $diff = $now->diff($ago);
 
     $diff->w = floor($diff->d / 7);

@@ -18,6 +18,8 @@ class ApiController extends BaseController {
                 return new StatusController();
             case 'render':
                 return new RenderController();
+            case 'user':
+                return new UserController();
             default:
                 $this->__call($segments, []);
                 break;

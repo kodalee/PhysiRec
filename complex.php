@@ -34,6 +34,10 @@ if ($user == false) {
 
     <link href="/common/app/imports.css" rel="stylesheet" crossorigin="anonymous">
 
+    <script>
+        var user = <?php echo json_encode($user); ?>;
+    </script>
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -154,7 +158,7 @@ if ($user == false) {
 
         
         @media (display-mode: standalone) {
-            [hidefrom="mobile"] {
+            [hidefrom="installed"] {
                 display: none;
             }
         }
@@ -166,15 +170,24 @@ if ($user == false) {
 
     <!-- Custom styles for this template -->
     <link href="/api/render/css?env=app&name=complex.scss" rel="stylesheet">
+    <link rel="stylesheet" href="/common/vendor/sweetalert2/sweetalert2.min.css">
 
+    <script src="/common/vendor/sweetalert2/sweetalert2.min.js"></script>
     <script src="/common/vendor/jquery/script.js"></script>
     <script src="/common/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="dark-mode not-shown ambient-lighting">
+    <div class="loader">
+        <div class="loader-content">
+            <i class="fa fa-spinner-third fa-spin"></i>
+            <div class="loader-context">Downloading content...</div>
+        </div>
+    </div>
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand me-0 px-3 fs-6" href="#"><img width="120px" src="/mat/img/woosh.png" alt="PhysyRec Logo"></a>
         <ul class="pnav">
+            <?php if ($user->GetUserRole() == G_STUDENT): ?>
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/complex.php/dashboard" data-ajax="dashboard">
                     <i class="fas fa-house"></i>
@@ -194,17 +207,53 @@ if ($user == false) {
                 </a>
             </li>
 
-            <li class="nav-item shine" hidefrom="mobile">
+            <li class="nav-item shine" hidefrom="installed">
                 <a class="nav-link active" aria-current="page" href="/complex.php/install" data-ajax="install">
                     <i class="fas fa-download"></i>
                     Install
                 </a>
             </li>
+            <?php elseif ($user->GetUserRole() == G_TEACHER): ?>
+                <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/complex.php/teachers/dashboard" data-ajax="teachers/dashboard">
+                    <i class="fas fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/complex.php/teachers/students" data-ajax="teachers/students">
+                    <i class="fas fa-screen-users"></i>
+                    Students
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/complex.php/teachers/access" data-ajax="teachers/access">
+                    <i class="fas fa-users-gear"></i>
+                    Collaborators
+                </a>
+            </li>
+
+            <?php if($user->GetUserRole() == G_SUPERUSER): ?>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/complex.php/admin/console" data-ajax="admin/console">
+                    <i class="fas fa-user-shield"></i>
+                    Superuser
+                </a>
+            </li>
+            <?php endif; ?>
+
+            <li class="nav-item shine" hidefrom="installed">
+                <a class="nav-link active" aria-current="page" href="/complex.php/install" data-ajax="install">
+                    <i class="fas fa-download"></i>
+                    Install
+                </a>
+            </li>
+            <?php endif; ?>
         </ul>
         <div class="navbar-nav">
             <div class="nav-item text-nowrap mx-2">
                 <span class="me-1"><?= $user->display_name ?></span>
-                <img class="rounded" width="25px" src="<?= $user->profile_picture ?>" alt="Google Profile Picture">
+                <img class="rounded" width="25px" src="<?= $user->profile_picture ?>" alt="Google Profile Picture">     
             </div>
         </div>
     </header>

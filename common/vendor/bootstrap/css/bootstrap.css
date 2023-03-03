@@ -51,7 +51,7 @@
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Inter, Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-sans-serif: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
@@ -2883,7 +2883,7 @@ textarea.form-control-lg {
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #6f42c1;
-  --bs-btn-border-color: #fff;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.5);
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #6e42c180;
   --bs-btn-hover-border-color: #fff;
@@ -2900,7 +2900,7 @@ textarea.form-control-lg {
 .btn-secondary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #6c757d;
-  --bs-btn-border-color: #6c757d;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.5);
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #5c636a;
   --bs-btn-hover-border-color: #565e64;
@@ -2917,7 +2917,7 @@ textarea.form-control-lg {
 .btn-success {
   --bs-btn-color: #fff;
   --bs-btn-bg: #198754;
-  --bs-btn-border-color: #198754;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.5);
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #157347;
   --bs-btn-hover-border-color: #146c43;
@@ -2934,7 +2934,7 @@ textarea.form-control-lg {
 .btn-info {
   --bs-btn-color: #000;
   --bs-btn-bg: #0dcaf0;
-  --bs-btn-border-color: #0dcaf0;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.5);
   --bs-btn-hover-color: #000;
   --bs-btn-hover-bg: #31d2f2;
   --bs-btn-hover-border-color: #25cff2;
@@ -2951,7 +2951,7 @@ textarea.form-control-lg {
 .btn-warning {
   --bs-btn-color: #000;
   --bs-btn-bg: #ffc107;
-  --bs-btn-border-color: #ffc107;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.5);
   --bs-btn-hover-color: #000;
   --bs-btn-hover-bg: #ffca2c;
   --bs-btn-hover-border-color: #ffc720;
@@ -2968,7 +2968,7 @@ textarea.form-control-lg {
 .btn-danger {
   --bs-btn-color: #fff;
   --bs-btn-bg: #dc3545;
-  --bs-btn-border-color: #dc3545;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.5);
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #bb2d3b;
   --bs-btn-hover-border-color: #b02a37;
@@ -2985,7 +2985,7 @@ textarea.form-control-lg {
 .btn-light {
   --bs-btn-color: #000;
   --bs-btn-bg: #f8f9fa;
-  --bs-btn-border-color: #f8f9fa;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.5);
   --bs-btn-hover-color: #000;
   --bs-btn-hover-bg: #d3d4d5;
   --bs-btn-hover-border-color: #c6c7c8;
@@ -3002,7 +3002,7 @@ textarea.form-control-lg {
 .btn-dark {
   --bs-btn-color: #fff;
   --bs-btn-bg: #212529;
-  --bs-btn-border-color: #212529;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.5);
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #424649;
   --bs-btn-hover-border-color: #373b3e;
@@ -3018,7 +3018,7 @@ textarea.form-control-lg {
 
 .btn-outline-primary {
   --bs-btn-color: #0d6efd;
-  --bs-btn-border-color: #0d6efd;
+  --bs-btn-border-color: rgba(255, 255, 255, 0.5);
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #0d6efd;
   --bs-btn-hover-border-color: #0d6efd;

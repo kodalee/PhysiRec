@@ -17,10 +17,13 @@
 
 define("__ROOT__", $_SERVER["DOCUMENT_ROOT"]);
 define("GH_REPO_COMMIT_INFO", "hellokoda/PhysiRec:main #ea28c8f (Jan 19, 2022)");
+date_default_timezone_set("America/Los_Angeles");
+
 
 const __IMPORTS__ = [
     // Load libraries first
     "/Libraries/ScssPhp/scss.inc.php",
+    "/Libraries/JShrink/src/Minifier.php",
 
     // Then load all required mods
     "/config.php",
@@ -49,6 +52,7 @@ const __IMPORTS__ = [
     "/GoogleApi/Http/GoogleClient.php",
     "/GoogleApi/Http/ConnectedGoogleClient.php",
     "/Controller/Api/BaseController.php",
+    "/Controller/Api/UserController.php",
     "/Controller/Api/RenderController.php",
     "/Controller/Api/ApiController.php",
     "/Controller/Api/GAuthController.php",

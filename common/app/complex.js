@@ -175,33 +175,33 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let preloadSounds = {};
 
-const audioCtx = window.AudioContext || window.webkitAudioContext;
-function unlockAudioContext(audioCtx) {
-    if (audioCtx.state !== 'suspended') return;
-    const b = document.body;
-    const events = ['touchstart','touchend', 'mousedown','keydown'];
-    events.forEach(e => b.addEventListener(e, unlock, false));
-    function unlock() { audioCtx.resume().then(clean); }
-    function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
-}
-unlockAudioContext(audioCtx)
+// const audioCtx = window.AudioContext || window.webkitAudioContext;
+// function unlockAudioContext(audioCtx) {
+//     if (audioCtx.state !== 'suspended') return;
+//     const b = document.body;
+//     const events = ['touchstart','touchend', 'mousedown','keydown'];
+//     events.forEach(e => b.addEventListener(e, unlock, false));
+//     function unlock() { audioCtx.resume().then(clean); }
+//     function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
+// }
+// unlockAudioContext(audioCtx)
   
-function PlaySound(path) {
-    // var AudioContext = window.AudioContext || window.webkitAudioContext;
-    // var context = new AudioContext();
+// function PlaySound(path) {
+//     // var AudioContext = window.AudioContext || window.webkitAudioContext;
+//     // var context = new AudioContext();
 
-    // var curBuffer = void 0;
-    // curBuffer = preloadSounds[path];
+//     // var curBuffer = void 0;
+//     // curBuffer = preloadSounds[path];
 
-    // var source = context.createBufferSource();
-    // source.buffer = curBuffer;
-    // source.connect(context.destination);
-    // source.start();
+//     // var source = context.createBufferSource();
+//     // source.buffer = curBuffer;
+//     // source.connect(context.destination);
+//     // source.start();
 
-    var track = audioCtx.createMediaElementSource(preloadSounds[path]);
-    track.connect(audioCtx.destination);
-    preloadSounds[path].play();
-}
+//     var track = audioCtx.createMediaElementSource(preloadSounds[path]);
+//     track.connect(audioCtx.destination);
+//     preloadSounds[path].play();
+// }
 
 
 // Handle phone scroll up refresh

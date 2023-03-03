@@ -9,5 +9,6 @@ class User {
     public string $email;
     protected string $user_groups;
     protected array $activity_list;
+    protected array $heartbeat_logs;
     public array $preferences;
 }
