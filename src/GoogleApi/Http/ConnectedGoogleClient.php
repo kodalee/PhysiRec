@@ -28,7 +28,7 @@ class ConnectedGoogleClient extends GoogleClient {
     public function GetUserInfo() {
         return $this->send("GET", "https://www.googleapis.com/oauth2/v2/userinfo", [
             "Authorization: Bearer {$this->access_token}",
-            "User-Agent: Physler.GoogleApi.Http.ConnectedGoogleClient"
+            "User-Agent: Physler.GoogleApi.Http.ConnectedGoogleClient (2023)"
         ]);
     }
 }
