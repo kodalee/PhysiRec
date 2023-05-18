@@ -30,7 +30,8 @@ $user = SessionVisitor::GetActive()->GetVisitorUser();
                                         <img src='{$studentuser->profile_picture}' alt=''>
                                     </div>
                                     <div class='student-name'>
-                                        <a href='#' data-ajax='teachers/students/{$studentuser->id}'>{$studentuser->display_name}</a>
+                                        <div><a href='#' data-ajax='teachers/students/{$studentuser->id}'>{$studentuser->display_name}</a></div>
+                                        
                                     </div>
                                 </div>
                             ");
