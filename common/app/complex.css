@@ -64,7 +64,6 @@ body.dark-mode {
 main#ajax-container {
   transition: 0.5s;
   transition-timing-function: ease-in-out;
-  filter: blur(15px);
   margin-bottom: 180px;
 }
 main#ajax-container:not(.page-shown) {
@@ -345,7 +344,6 @@ icon {
   font-size: 800%;
   background: rgb(0, 0, 0);
   background: linear-gradient(20deg, rgb(0, 0, 0) 0%, rgb(40, 36, 74) 25%, rgb(189, 110, 255) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#bd6eff",GradientType=1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -75,7 +75,6 @@ main#ajax-container {
 	}
     transition: 0.5s;
     transition-timing-function: ease-in-out;
-	filter: blur(15px);
 
 	margin-bottom: 180px;
 }
@@ -359,7 +358,6 @@ icon {
 	background: -moz-linear-gradient(20deg, rgba(0,0,0,1) 0%, rgba(40,36,74,1) 25%, rgba(189,110,255,1) 100%);
 	background: -webkit-linear-gradient(20deg, rgba(0,0,0,1) 0%, rgba(40,36,74,1) 25%, rgba(189,110,255,1) 100%);
 	background: linear-gradient(20deg, rgba(0,0,0,1) 0%, rgba(40,36,74,1) 25%, rgba(189,110,255,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#bd6eff",GradientType=1);
 
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
