@@ -6,9 +6,6 @@ body {
 	transition: .2s;
 	opacity: 1;
 	&.ambient-lighting {
-		backdrop-filter: brightness(0) hue-rotate(0deg);
-		-moz-backdrop-filter: brightness(0) hue-rotate(0deg);
-		-webkit-backdrop-filter: brightness(0) hue-rotate(0deg);
 		background: rgb(0,0,0);
 		background: -moz-linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
 		background: -webkit-linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);

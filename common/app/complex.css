@@ -6,9 +6,6 @@ body {
   opacity: 1;
 }
 body.ambient-lighting {
-  backdrop-filter: brightness(0) hue-rotate(0deg);
-  -moz-backdrop-filter: brightness(0) hue-rotate(0deg);
-  -webkit-backdrop-filter: brightness(0) hue-rotate(0deg);
   background: rgb(0, 0, 0);
   background: linear-gradient(145deg, rgb(0, 0, 0) 0%, rgb(6, 34, 54) 46%, rgb(11, 55, 85) 60%, rgb(12, 64, 99) 65%, rgb(33, 87, 124) 73%, rgb(83, 185, 255) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#53b9ff",GradientType=1);
