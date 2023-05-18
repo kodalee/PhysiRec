@@ -9,11 +9,6 @@ body.ambient-lighting {
   background: rgb(0, 0, 0);
   background: linear-gradient(145deg, rgb(0, 0, 0) 0%, rgb(6, 34, 54) 46%, rgb(11, 55, 85) 60%, rgb(12, 64, 99) 65%, rgb(33, 87, 124) 73%, rgb(83, 185, 255) 100%);
 }
-body.ambient-lighting[catagory]:not([catagory=null]) {
-  backdrop-filter: brightness(0.3);
-  -moz-backdrop-filter: brightness(0.3);
-  -webkit-backdrop-filter: brightness(0.3);
-}
 body.ambient-lighting[catagory] .loader {
   display: none;
   opacity: 0;
@@ -45,16 +40,6 @@ body.ambient-lighting[catagory=null] .loader .loader-content i {
   --fa-animation-duration: 0.5s;
   font-size: 30px;
   margin-bottom: 5px;
-}
-body.ambient-lighting[catagory=dashboard] {
-  backdrop-filter: brightness(0.3);
-  -moz-backdrop-filter: brightness(0.3);
-  -webkit-backdrop-filter: brightness(0.3);
-}
-body.ambient-lighting[catagory=activity] {
-  backdrop-filter: brightness(0.3);
-  -moz-backdrop-filter: brightness(0.3);
-  -webkit-backdrop-filter: brightness(0.3);
 }
 body.dark-mode {
   background-color: #0a0a0a;
