@@ -26,7 +26,7 @@ const __IMPORTS__ = [
     "/Libraries/JShrink/src/Minifier.php",
 
     // Then load all required mods
-    "/config.php",
+    "/Config.php",
     "/functions.php",
     "/constants.php",
 
