@@ -42,9 +42,9 @@ if ($user == false) {
     <link href="/api/render/css?env=app&name=complex.scss" rel="stylesheet">
     <link rel="stylesheet" href="/common/vendor/sweetalert2/sweetalert2.min.css">
 
-    <script src="/common/vendor/sweetalert2/sweetalert2.min.js"></script>
-    <script src="/common/vendor/jquery/script.js"></script>
-    <script src="/common/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="/common/vendor/sweetalert2/sweetalert2.min.js"></script> -->
+    <!-- <script src="/common/vendor/jquery/script.js"></script> -->
+    <!-- <script src="/common/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 </head>
 
 <body class="dark-mode not-shown ambient-lighting">
@@ -143,8 +143,8 @@ if ($user == false) {
         </div>
     </div>
 
-    <script src="/common/vendor/feather-icons/dist/feather.min.js"></script>
-    <script src="/common/vendor/chart-js/dist/chart.min.js"></script>
+    <!-- <script src="/common/vendor/feather-icons/dist/feather.min.js"></script> -->
+    <!-- <script src="/common/vendor/chart-js/dist/chart.min.js"></script> -->
     <!-- <script src="/common/app/complex.js"></script> -->
     <!-- <script src="/common/vendor/duration-picker/out.js"></script> -->
 </body>
