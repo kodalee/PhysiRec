@@ -11,6 +11,11 @@ body {
 		background: -webkit-linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
 		background: linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
 		&[catagory] {
+			&:not([catagory=null]) {
+				backdrop-filter: brightness(0.3);
+				-moz-backdrop-filter: brightness(0.3);
+				-webkit-backdrop-filter: brightness(0.3);	
+			}
 			.loader {
 				display: none;
 				opacity: 0;
@@ -42,22 +47,19 @@ body {
 				}
 			}
 						
-			--activity-color: #fff;
-			backdrop-filter: brightness(0) hue-rotate(0deg);
-			-moz-backdrop-filter: brightness(0) hue-rotate(0deg);
-			-webkit-backdrop-filter: brightness(0) hue-rotate(0deg);
+			backdrop-filter: brightness(0);
+			-moz-backdrop-filter: brightness(0);
+			-webkit-backdrop-filter: brightness(0);
 		}
 		&[catagory=dashboard] {
-			--activity-color: #8d27b0;
-			backdrop-filter: brightness(0.3) hue-rotate(64deg);
-			-moz-backdrop-filter: brightness(0.3) hue-rotate(64deg);
-			-webkit-backdrop-filter: brightness(0.3) hue-rotate(64deg);
+			backdrop-filter: brightness(0.3);
+			-moz-backdrop-filter: brightness(0.3);
+			-webkit-backdrop-filter: brightness(0.3);
 		}
 		&[catagory=activity] {
-			--activity-color: #ff0000;
-			backdrop-filter: brightness(0.3) hue-rotate(132deg);
-			-moz-backdrop-filter: brightness(0.3) hue-rotate(132deg);
-			-webkit-backdrop-filter: brightness(0.3) hue-rotate(132deg);
+			backdrop-filter: brightness(0.3);
+			-moz-backdrop-filter: brightness(0.3);
+			-webkit-backdrop-filter: brightness(0.3);
 		}
 
 	}
@@ -158,7 +160,6 @@ main#ajax-container {
 	background-color: rgba(0, 0, 0, .25);
 	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
 	img {
-		filter: opacity(0.5) drop-shadow(0 0 0 var(--activity-color));
 		transition: 0.2s;
 	}
 }
