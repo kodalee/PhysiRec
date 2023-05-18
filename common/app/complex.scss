@@ -4,7 +4,6 @@ body {
 
 	font-size: .875rem;
 	transition: .2s;
-	opacity: 1;
 	&.ambient-lighting {
 		background: rgb(0,0,0);
 		background: -moz-linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
@@ -87,9 +86,6 @@ main#ajax-container {
 	box-shadow: 0 0 10px 1px #0a0a0a;
 }
 .not-shown {
-	background-color: #0a0a0a;
-	opacity: 0;
-	transform: scale(0.8);
 }
 .feather {
 	width: 16px;

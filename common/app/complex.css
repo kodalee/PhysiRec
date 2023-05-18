@@ -3,7 +3,6 @@ body {
   overflow: hidden;
   font-size: 0.875rem;
   transition: 0.2s;
-  opacity: 1;
 }
 body.ambient-lighting {
   background: rgb(0, 0, 0);
@@ -72,12 +71,6 @@ main#ajax-container:not(.page-shown) {
 
 .card {
   box-shadow: 0 0 10px 1px #0a0a0a;
-}
-
-.not-shown {
-  background-color: #0a0a0a;
-  opacity: 0;
-  transform: scale(0.8);
 }
 
 .feather {

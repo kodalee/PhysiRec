@@ -47,7 +47,7 @@ if ($user == false) {
     <script src="/common/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body class="dark-mode not-shown ambient-lighting">
+<body class="dark-mode ambient-lighting">
     <div class="loader">
         <div class="loader-content">
             <i class="fa fa-spinner-third fa-spin"></i>
