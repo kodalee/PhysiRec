@@ -39,7 +39,7 @@ if ($user == false) {
     </script>
 
     <!-- Custom styles for this template -->
-    <!-- <link href="/api/render/css?env=app&name=complex.scss" rel="stylesheet"> -->
+    <link href="/common/app/complex.css" rel="stylesheet">
     <link rel="stylesheet" href="/common/vendor/sweetalert2/sweetalert2.min.css">
 
     <script src="/common/vendor/sweetalert2/sweetalert2.min.js"></script>
