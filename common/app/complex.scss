@@ -10,7 +10,6 @@ body {
 		background: -moz-linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
 		background: -webkit-linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
 		background: linear-gradient(145deg, rgba(0,0,0,1) 0%, rgba(6,34,54,1) 46%, rgba(11,55,85,1) 60%, rgba(12,64,99,1) 65%, rgba(33,87,124,1) 73%, rgba(83,185,255,1) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#53b9ff",GradientType=1);
 		&[catagory] {
 			.loader {
 				display: none;
@@ -69,9 +68,11 @@ body {
 			
 }
 main#ajax-container {
-    transform: scale(0.97);
+	&:not(.page-shown) {
+		opacity: 0;
+	}
     transition: 0.5s;
-    transition-timing-function: cubic-bezier(0.42, 0, 0, 1.02);
+    transition-timing-function: ease-in-out;
 	filter: blur(15px);
 
 	margin-bottom: 180px;
@@ -91,12 +92,12 @@ main#ajax-container {
 		transform: scale(0.95);
 	}
 }
-main.page-shown {
-	transform: scale(1) !important;
-	filter: blur(0px) !important;
-	opacity: 1 !important;
-	backdrop-filter: background(0.1px) hue-rotate(0deg);
-}
+// main.page-shown {
+// 	transform: scale(1) !important;
+// 	filter: blur(0px) !important;
+// 	opacity: 1 !important;
+// 	backdrop-filter: background(0.1px) hue-rotate(0deg);
+// }
 .card {
 	box-shadow: 0 0 10px 1px #0a0a0a;
 }

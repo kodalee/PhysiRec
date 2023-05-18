@@ -8,7 +8,6 @@ body {
 body.ambient-lighting {
   background: rgb(0, 0, 0);
   background: linear-gradient(145deg, rgb(0, 0, 0) 0%, rgb(6, 34, 54) 46%, rgb(11, 55, 85) 60%, rgb(12, 64, 99) 65%, rgb(33, 87, 124) 73%, rgb(83, 185, 255) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#53b9ff",GradientType=1);
 }
 body.ambient-lighting[catagory] .loader {
   display: none;
@@ -61,11 +60,13 @@ body.dark-mode {
 }
 
 main#ajax-container {
-  transform: scale(0.97);
   transition: 0.5s;
-  transition-timing-function: cubic-bezier(0.42, 0, 0, 1.02);
+  transition-timing-function: ease-in-out;
   filter: blur(15px);
   margin-bottom: 180px;
+}
+main#ajax-container:not(.page-shown) {
+  opacity: 0;
 }
 
 .scroll-container {
@@ -81,14 +82,6 @@ main#ajax-container {
 }
 .btn:active {
   transform: scale(0.95);
-}
-
-main.page-shown {
-  transform: scale(1) !important;
-  filter: blur(0px) !important;
-  opacity: 1 !important;
-  -webkit-backdrop-filter: background(0.1px) hue-rotate(0deg);
-          backdrop-filter: background(0.1px) hue-rotate(0deg);
 }
 
 .card {
