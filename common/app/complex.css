@@ -264,6 +264,7 @@ a.student-row {
   padding: 10px;
   text-decoration: none;
   color: white;
+  cursor: pointer;
 }
 
 a.student-row::after {

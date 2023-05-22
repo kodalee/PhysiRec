@@ -26,7 +26,7 @@ $user = SessionVisitor::GetActive()->GetVisitorUser();
 
                         foreach ($students as $student) {
                         ?>
-                            <a class="student-row" data-ajax="/complex.php/teachers/students?id=<?= $student->id ?>">
+                            <a class="student-row" data-ajax="teachers/students?id=<?= $student->id ?>">
                                 <div class="student-avatar">
                                     <img src="<?= $student->profile_picture ?>" alt="">
                                 </div>
