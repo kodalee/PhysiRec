@@ -301,7 +301,7 @@
         main.time.min = Date.now() - 1209600000;
         setInterval(() => {
             if (!c_time_interfered) {
-                main.time.valueAsDate = new Date();
+                main.time.valueAsNumber = Date.now();
             }
         }, 1000)
 
