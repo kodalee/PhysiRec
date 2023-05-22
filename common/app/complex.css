@@ -258,6 +258,74 @@ icon {
   border: 1px solid rgba(255, 255, 255, 0.3764705882);
 }
 
+a.student-row {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+a.student-row::after {
+  content: "\f0da";
+  font-family: "Font Awesome 6 Pro";
+  font-weight: 900;
+  margin-left: auto;
+  margin-right: 25px;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+a.student-row:hover::after {
+  opacity: 1;
+  transform: none;
+  margin-right: 10px;
+}
+
+.student-avatar {
+  margin-right: 1rem;
+}
+
+.student-avatar img {
+  width: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3333333333);
+}
+
+.student-row:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3137254902);
+}
+
+.student-body {
+  border: 1px solid rgba(255, 255, 255, 0.3333333333);
+  border-radius: 5px;
+  overflow: auto;
+  max-height: 250px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  -webkit-transition: 0.2s width;
+  transition: 0.2s width;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3333333333);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
 .card-header {
   padding-bottom: 0 !important;
 }

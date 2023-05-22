@@ -270,6 +270,74 @@ icon {
 	// backdrop-filter: blur(15px);
 	border: 1px solid #ffffff60;
 }
+
+a.student-row {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+a.student-row::after {
+    content: "\f0da";
+    font-family: "Font Awesome 6 Pro";
+    font-weight: 900;
+    margin-left: auto;
+    margin-right: 25px;
+    opacity: 0;
+    transition: .2s;
+}
+
+a.student-row:hover::after  {
+    opacity: 1;
+    transform: none;
+    margin-right: 10px;
+}
+
+.student-avatar {
+    margin-right: 1rem;
+}
+
+.student-avatar img {
+    width: 40px;
+    border-radius: 5px;
+    border: 1px solid #fff5;
+}
+
+.student-row:not(:last-child) {
+    border-bottom: 1px solid #ffffff50;
+}
+
+.student-body {
+    border: 1px solid #fff5;
+    border-radius: 5px;
+    overflow: auto;
+    max-height: 250px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  transition: 0.2s width;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f100; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fff5;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fff6; 
+}
+
 .card-header {
 	padding-bottom: 0 !important;
 }

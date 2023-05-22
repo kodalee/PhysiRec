@@ -1,6 +1,7 @@
 <?php
 
 use Physler\Session\SessionVisitor;
+
 $user = SessionVisitor::GetActive()->GetVisitorUser();
 
 ?>
@@ -16,27 +17,25 @@ $user = SessionVisitor::GetActive()->GetVisitorUser();
             <div class="card bg-blur">
                 <div class="card-header">
                     <h5 class="mt-1 mb-0">Your students</h4>
-                    <p class="m-0">View activity, information, and other demographics of your students.</p>
+                        <p class="m-0">View activity, information, and other demographics of your students.</p>
                 </div>
                 <div class="card-body">
                     <div class="student-body">
                         <?php
                         $students = $user->GetStudents();
-                        
-                        foreach ($students as $student => $studentuser) {
-                            echo("
-                                <div class='student-row'>
-                                    <div class='student-avatar'>
-                                        <img src='{$studentuser->profile_picture}' alt=''>
-                                    </div>
-                                    <div class='student-name'>
-                                        <div><a href='#' data-ajax='teachers/students/{$studentuser->id}'>{$studentuser->display_name}</a></div>
-                                        
-                                    </div>
-                                </div>
-                            ");
-                        }
+
+                        foreach ($students as $student) {
                         ?>
+                            <a class="student-row" data-ajax="/complex.php/teachers/students?id=<?= $student->id ?>">
+                                <div class="student-avatar">
+                                    <img src="<?= $student->profile_picture ?>" alt="">
+                                </div>
+                                <div class="student-name">
+                                    <div><?= $student->real_name ?></div>
+                                    <small class="text-muted">melissa@gecs.org</small>
+                                </div>
+                            </a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
