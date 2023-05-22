@@ -293,20 +293,17 @@
             console.log(info)
         })
 
-        g_timezone = "America/Los_Angeles";
-
         main.time.addEventListener("input", () => {
             c_time_interfered = true;
         })
 
         c_time_interfered = false;
+        main.time.min = Date.now() - 1209600000;
         setInterval(() => {
             if (!c_time_interfered) {
-                main.time.valueAsNumber = Date.now();
+                main.time.valueAsNumber = Date.now()/1000;
             }
-
-            main.time.min = Date.now() - 1209600000;
-        }, 100)
+        }, 1000)
 
         Object.keys(muscles).forEach(n => {
             muscles[n].addEventListener("input", () => {
