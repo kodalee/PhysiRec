@@ -67,8 +67,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group d-flex">
-                        <select class="form-control my-1 me-1" id="activity-duration">
+                    <div class="form-group d-flex flex-column">
+                        <select class="form-control my-1" id="activity-duration">
                             <option value="null">How long?</option>
                             <option value="1500">less than 45 minutes</option>
                             <option value="2700">45 minutes or more</option>
@@ -77,7 +77,7 @@
                             <option value="14400">around 4 hours</option>
                             <option value="18000">even more hours</option>
                         </select>
-                        <div class="form-input-label ms-1">
+                        <div class="form-input-label">
                             <input class="form-control my-1" id="activity-time" type="datetime-local">
                             <label>When was this?</label>
                         </div>
