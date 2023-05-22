@@ -302,15 +302,10 @@
         c_time_interfered = false;
         setInterval(() => {
             if (!c_time_interfered) {
-                var timeNow = (new Date(new Date().toLocaleString("en-US", {
-                    timeZone: g_timezone
-                }))).toISOString().substring(0, 19);
-                main.time.value = timeNow;
+                main.time.valueAsNumber = Date.now();
             }
 
-            main.time.min = (new Date(new Date(Date.now() - 1209600000).toLocaleString("en-US", {
-                timeZone: g_timezone
-            }))).toISOString().substring(0, 16)
+            main.time.min = Date.now() - 1209600000;
         }, 100)
 
         Object.keys(muscles).forEach(n => {

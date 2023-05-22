@@ -5,7 +5,7 @@ body {
   transition: 0.2s;
 }
 body.ambient-lighting {
-  background: rgb(0, 0, 0);
+  background: #000;
   background: linear-gradient(145deg, rgb(0, 0, 0) 0%, rgb(6, 34, 54) 46%, rgb(11, 55, 85) 60%, rgb(12, 64, 99) 65%, rgb(33, 87, 124) 73%, rgb(83, 185, 255) 100%);
 }
 body.ambient-lighting[catagory] .loader {
@@ -23,7 +23,7 @@ body.ambient-lighting[catagory=null] .loader {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8588235294);
+  background: #000 db;
   z-index: 1019;
   display: flex;
   justify-content: center;
@@ -36,13 +36,13 @@ body.ambient-lighting[catagory=null] .loader .loader-content {
   text-align: center;
 }
 body.ambient-lighting[catagory=null] .loader .loader-content i {
-  --fa-animation-duration: 0.5s;
+  --fa-animation-duration:0.5s;
   font-size: 30px;
   margin-bottom: 5px;
 }
 body.dark-mode {
   background-color: #0a0a0a;
-  color: #ffffff;
+  color: #fff;
 }
 
 main#ajax-container {
@@ -158,7 +158,7 @@ main#ajax-container:not(.page-shown) {
   padding-left: 0.3rem;
 }
 .dark-mode select option {
-  background-color: rgb(29, 29, 29);
+  background-color: #1d1d1d;
 }
 .dark-mode .form-control {
   color: white;
@@ -202,7 +202,6 @@ button.nav-btn i {
 button.nav-btn:active {
   transform: scale(0.7);
 }
-
 button.nav-btn.active i {
   font-weight: 600;
 }
@@ -217,8 +216,8 @@ button.nav-btn.active i {
   font-weight: 600;
   color: white;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.4235294118);
-  background: rgba(255, 255, 255, 0.1019607843);
+  border: 1px solid #fff 6c;
+  background: #fff 1a;
   transition: 0.1s;
   display: block;
 }
@@ -227,15 +226,15 @@ button.nav-btn.active i {
 }
 .top-sel button:hover {
   color: white;
-  background: rgba(255, 255, 255, 0.5607843137);
+  background: #fff 8f;
 }
 .top-sel button:active:not(.active) {
-  background: rgba(255, 255, 255, 0.168627451);
-  color: rgb(255, 255, 255);
+  background: #fff 2b;
+  color: #fff;
   transform: scale(0.95);
 }
 .top-sel button.active {
-  background: rgba(255, 255, 255, 0.5019607843);
+  background: #fff 80;
   color: white;
   transform: scale(1.05);
 }
@@ -254,8 +253,8 @@ icon {
 }
 
 .bg-blur {
-  background: rgba(0, 0, 0, 0.1882352941);
-  border: 1px solid rgba(255, 255, 255, 0.3764705882);
+  background: #000 30;
+  border: 1px solid #fff 60;
 }
 
 a.student-row {
@@ -266,7 +265,6 @@ a.student-row {
   color: white;
   cursor: pointer;
 }
-
 a.student-row::after {
   content: "\f0da";
   font-family: "Font Awesome 6 Pro";
@@ -276,7 +274,6 @@ a.student-row::after {
   opacity: 0;
   transition: 0.2s;
 }
-
 a.student-row:hover::after {
   opacity: 1;
   transform: none;
@@ -286,19 +283,18 @@ a.student-row:hover::after {
 .student-avatar {
   margin-right: 1rem;
 }
-
 .student-avatar img {
   width: 40px;
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.3333333333);
+  border: 1px solid #fff 5;
 }
 
 .student-row:not(:last-child) {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3137254902);
+  border-bottom: 1px solid #fff 50;
 }
 
 .student-body {
-  border: 1px solid rgba(255, 255, 255, 0.3333333333);
+  border: 1px solid #fff 5;
   border-radius: 5px;
   overflow: auto;
   max-height: 250px;
@@ -313,20 +309,19 @@ a.student-row:hover::after {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: rgba(241, 241, 241, 0);
+  background: #f1f1f1 0;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3333333333);
+  background: #fff 5;
   border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #fff 6;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.4);
-}
-
 .card-header {
   padding-bottom: 0 !important;
 }
@@ -340,10 +335,7 @@ a.student-row:hover::after {
 .goals .daily:hover span {
   color: white !important;
 }
-.goals .weekly {
-  transition: 0.2s;
-}
-.goals .monthly {
+.goals .weekly, .goals .monthly {
   transition: 0.2s;
 }
 
@@ -360,7 +352,7 @@ a.student-row:hover::after {
 .emoji-picker {
   display: flex;
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.3764705882);
+  border: 1px solid #fff 60;
   border-radius: 3px;
   overflow: auto;
 }
@@ -375,7 +367,7 @@ a.student-row:hover::after {
 .emoji-picker button.active {
   font-size: 30px;
   box-shadow: inset 0 0 11px #a16dd0;
-  background: rgba(161, 109, 208, 0.1882352941);
+  background: #a16dd0 30;
 }
 
 @media (min-width: 500px) {
@@ -387,7 +379,7 @@ a.student-row:hover::after {
   font-size: 800%;
   background-clip: text;
   font-size: 800%;
-  background: rgb(0, 0, 0);
+  background: #000;
   background: linear-gradient(20deg, rgb(0, 0, 0) 0%, rgb(40, 36, 74) 25%, rgb(189, 110, 255) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -401,40 +393,36 @@ ul.heartbeat-history li {
   list-style: none;
   list-style-type: none;
   text-align: center;
-  background-color: rgba(102, 51, 153, 0.1019607843);
+  background-color: #639 1a;
   margin: 10px 0;
   padding: 10px;
   border: 1px solid white;
   border-radius: 10px;
-  box-shadow: inset 0 -5px 8px rgba(179, 140, 140, 0.1490196078);
+  box-shadow: inset 0 -5px 8px #b38c8c 26;
 }
 ul.heartbeat-history li:hover {
-  box-shadow: inset 0 -5px 8px rgba(178, 39, 39, 0.431372549);
+  box-shadow: inset 0 -5px 8px #b22727 6e;
   transform: scale(1.03);
 }
-
+ul.heartbeat-logs {
+  padding: 0;
+}
 ul.heartbeat-logs li {
   transition: 0.2s;
   list-style: none;
   list-style-type: none;
   text-align: center;
-  background-color: rgba(153, 51, 51, 0.1019607843);
+  background-color: #933 1a;
   margin: 10px 0;
   padding: 10px;
   border: 1px solid white;
   border-radius: 10px;
-  box-shadow: inset 0 -5px 8px rgba(179, 140, 140, 0.1490196078);
+  box-shadow: inset 0 -5px 8px #b38c8c 26;
 }
-
-ul.heartbeat-logs {
-  padding: 0;
-}
-
 ul.heartbeat-logs li:hover {
-  box-shadow: inset 0 -5px 8px rgba(178, 39, 39, 0.431372549);
+  box-shadow: inset 0 -5px 8px #b22727 6e;
   transform: scale(1.03);
 }
-
 ul.latest-activity {
   padding: 0;
 }
@@ -443,36 +431,33 @@ ul.latest-activity li {
   list-style: none;
   list-style-type: none;
   text-align: center;
-  background-color: rgba(102, 51, 153, 0.1019607843);
+  background-color: #639 1a;
   margin: 10px 0;
   padding: 10px;
   border: 1px solid white;
   border-radius: 10px;
-  box-shadow: inset 0 -5px 8px rgba(179, 140, 140, 0.1490196078);
+  box-shadow: inset 0 -5px 8px #b38c8c 26;
 }
 ul.latest-activity li:hover {
-  box-shadow: inset 0 -5px 8px rgba(116, 39, 178, 0.431372549);
+  box-shadow: inset 0 -5px 8px #7427b2 6e;
   transform: scale(1.03);
 }
 
 /* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-/* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
 
+/* Firefox */
 .form-input-label {
   width: 100%;
   position: relative;
   display: inherit;
 }
-
 .form-input-label label {
   position: absolute;
   padding: 5px 1.5px;
@@ -482,30 +467,24 @@ input[type=number] {
   pointer-events: none;
   transition: 0.2s;
 }
-
+.form-input-label input {
+  transition: 0.2s;
+}
 .form-input-label input::-moz-placeholder {
   opacity: 0;
 }
-
 .form-input-label input::placeholder {
   opacity: 0;
 }
-
 .form-input-label input:not(:-moz-placeholder-shown) ~ label {
   padding: 0px 5px;
   font-size: 0.75rem;
   color: var(--bs-gray-500);
 }
-
-.form-input-label input:not(:placeholder-shown) ~ label,
-.form-input-label input:focus:not([readonly]) ~ label {
+.form-input-label input:not(:placeholder-shown) ~ label, .form-input-label input:focus:not([readonly]) ~ label {
   padding: 0px 5px;
   font-size: 0.75rem;
   color: var(--bs-gray-500);
-}
-
-.form-input-label input {
-  transition: 0.2s;
 }
 
 button.heart {
@@ -515,7 +494,6 @@ button.heart {
   font-size: 150px;
   transition: 0.1s;
 }
-
 button.heart:active {
   transform: scale(0.95);
   opacity: 0.6;
@@ -559,7 +537,6 @@ button.heart:active {
   height: 2.75rem;
   overflow-y: hidden;
 }
-
 .nav-scroller .nav {
   display: flex;
   flex-wrap: nowrap;
@@ -585,24 +562,24 @@ ul.pnav {
   border: 1px solid transparent;
   padding: 5px 20px;
 }
-
 .pnav .nav-link:hover {
-  background: rgba(255, 255, 255, 0.1058823529);
-  border: 1px solid rgba(255, 255, 255, 0.3333333333);
+  background: #fff 1b;
+  border: 1px solid #fff 55;
   border-radius: 1rem;
 }
-
 .pnav li.nav-item {
   margin: 0 20px;
 }
-
 .pnav .nav-link.active {
   border-radius: 1rem;
-  border: 1px solid rgba(30, 106, 255, 0.4588235294);
-  background: rgba(30, 106, 255, 0.0196078431);
+  border: 1px solid #1e6aff 75;
+  background: #1e6aff 5;
   color: #6595f2;
 }
 
+.nav-item.shine {
+  position: relative;
+}
 .nav-item.shine:not(:hover)::before {
   content: "";
   width: 100%;
@@ -611,7 +588,7 @@ ul.pnav {
   pointer-events: none;
   position: absolute;
   border-radius: 1rem;
-  background: rgb(255, 255, 255);
+  background: #fff;
   background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 196, 56, 0) 28%, rgb(255, 179, 0) 50%, rgba(255, 187, 25, 0) 74%, rgba(255, 255, 255, 0) 100%);
   background-repeat: no-repeat;
   background-position-x: 100px;
@@ -620,10 +597,6 @@ ul.pnav {
   animation-name: gshine;
   animation-duration: 15s;
   animation-iteration-count: infinite;
-}
-
-.nav-item.shine {
-  position: relative;
 }
 
 @keyframes gshine {
