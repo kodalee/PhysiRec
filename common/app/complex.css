@@ -180,8 +180,8 @@ main#ajax-container:not(.page-shown) {
 }
 
 .mobile-navbar {
-  margin-bottom: 20px;
-  height: 70px;
+  margin-bottom: 4vh;
+  height: 6vh;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -635,6 +635,9 @@ ul.pnav {
   }
 }
 @media (display-mode: standalone) {
+  .mobile-navbar {
+    margin-bottom: 4vh;
+  }
   [hidefrom=installed] {
     display: none;
   }

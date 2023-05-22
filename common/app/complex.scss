@@ -193,11 +193,11 @@ main#ajax-container {
 	display:flex;	
 }
 .mobile-navbar {
-	margin-bottom: 20px;
-	height: 70px;
-	width: 100%;
-	display: flex;
-	justify-content: space-around;
+    margin-bottom: 4vh;
+    height: 6vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 button.nav-btn {
 	border: none;
@@ -657,6 +657,9 @@ ul.pnav {
 
 
 @media (display-mode: standalone) {
+	.mobile-navbar {
+		margin-bottom: 4vh;
+	}
 	[hidefrom="installed"] {
 		display: none;
 	}
