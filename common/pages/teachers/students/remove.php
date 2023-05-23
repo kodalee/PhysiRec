@@ -25,8 +25,9 @@ if ($student == false) {
                 <div class="card-header d-flex">
                     <h5 class="">Remove <?= $student->display_name ?></h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body text-center">
                     <div>Are you sure you want to remove <?= $student->display_name ?> as your student?</div>
+                    <button class="btn btn-danger mt-3" data-ajax="teachers/students/remove?id=<?= $student->id ?>">Remove</button>
                 </div>
             </div>
         </div>
