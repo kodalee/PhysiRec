@@ -129,7 +129,7 @@ function getPage(name) {
     AppHistory.push(name);
     document.body.setAttribute("catagory", "null")
 
-    $.get(`/api/app/page/${name}.json`)
+    $.get(`/api/app/page/${name}`)
 
     .then(data => {
         modPage({

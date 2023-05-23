@@ -171,6 +171,24 @@ class User extends \Physler\Entity\User {
     }
 
     /**
+     * Get a user's information from a numeric unique ID
+     * @param int $id The user's ID
+     * @return User|false
+     */
+    public static function GetById($id) {
+        $db = DbClient_S::Default();
+
+        $qry = $db->QueryJson("SELECT * FROM `physler_user` WHERE `id` = '%d'", [$id]);
+        if (count($qry) > 0) {
+            $usrobj = $qry[0];
+            return new User($usrobj);
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
      * Very unneeded function because
      * gauth is going to be used.
      * public function ValidatePasswd($input) {
