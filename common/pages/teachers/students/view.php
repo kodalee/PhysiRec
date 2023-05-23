@@ -30,7 +30,7 @@ if ($student == false) {
                     <div><?= $student->email ?></div>
                     <div class="mt-2">
                         <?php
-                        $activityList = $student->GetHtmlActivityList(true);
+                        echo $student->GetHtmlActivityList(true);
                         ?>
                     </div>
                 </div>
