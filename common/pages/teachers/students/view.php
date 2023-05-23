@@ -18,7 +18,7 @@ if ($student == false) {
     </div>
 </div>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card bg-blur">
                 <div class="card-header d-flex">

@@ -199,6 +199,16 @@ main#ajax-container {
     display: flex;
     justify-content: space-around;
 }
+.card-profile img {
+    width: 48px;
+}
+
+.card-profile {padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x) !important;align-items: center;}
+
+.card-profile h5 {
+    margin-left: 10px;
+}
+
 button.nav-btn {
 	border: none;
 	background: none;
