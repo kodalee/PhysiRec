@@ -80,7 +80,7 @@ class User extends \Physler\Entity\User {
                 $currentDay = date("d/m/Y", time()); 
                 $activityDay = date("d/m/Y", intval($act->timestamp));
                 $duration = User::HumanTime(time() - $act->activity_duration);
-                if ($currentDay == $activityDay && $all == false) {
+                if ($currentDay == $activityDay || $all) {
                     $ar = $ar . "<li>$activityDay, for ~$duration: {$activityEmojis[$act->activity_catagory]} {$act->activity_description}</li>";
                 }
             }
