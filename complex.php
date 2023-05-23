@@ -136,9 +136,19 @@ if ($user == false) {
         </div>
         <div class="fixed-bottom mobile-navbar-bg">
             <div class="mobile-navbar">
+                <?php if ($user->IsStudent()): ?>
                 <button class="nav-btn active" data-ajax="dashboard" aria-label="Home"><i class="fa-home"></i></button>
                 <button class="nav-btn" data-ajax="activity" aria-label="Activity"><i class="fa-wave-pulse"></i></button>
                 <button class="nav-btn" data-ajax="settings" aria-label="Preferences"><i class="fa-cogs"></i></button>
+                <?php elseif ($user->IsTeacher()): ?>
+                <button class="nav-btn active" data-ajax="teachers/dashboard" aria-label="Home"><i class="fa-home"></i></button>
+                <button class="nav-btn" data-ajax="teachers/students" aria-label="Students"><i class="fa-screen-users"></i></button>
+                <button class="nav-btn" data-ajax="teachers/access" aria-label="Collaborators"><i class="fa-users-gear"></i></button>
+                <?php if($user->IsSuperuser()): ?>
+                <button class="nav-btn" data-ajax="admin/console" aria-label="Superuser"><i class="fa-user-shield"></i></button>
+                <?php endif; ?>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
