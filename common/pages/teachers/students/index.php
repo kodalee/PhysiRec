@@ -8,7 +8,7 @@ $user = SessionVisitor::GetActive()->GetVisitorUser();
 
 <div class="mx-2 p-2 mt-3">
     <div>
-        <h1 class="h2 mb-0">Students</h1>
+        <h1 class="h2 mb-0 text-center">Students</h1>
     </div>
 </div>
 <div class="container-fluid">
