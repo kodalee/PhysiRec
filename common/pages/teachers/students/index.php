@@ -48,12 +48,12 @@ $user = SessionVisitor::GetActive()->GetVisitorUser();
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-3">
-                        <div class="form-input-label me-1">
+                        <div class="form-input-label">
                             <input class="form-control" type="number" placeholder=" " id="muscle-sets">
                             <label>Email Address</label>
                         </div>
-                        <button class="btn btn-primary" type="button" id="addBtn">Add</button>
                     </div>
+                    <button class="btn btn-primary float-right" type="button" id="addBtn">Add</button>
                 </div>
             </div>
         </div>
