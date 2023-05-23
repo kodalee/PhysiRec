@@ -42,7 +42,7 @@ $user = SessionVisitor::GetActive()->GetVisitorUser();
         </div>
         <div class="col-md-6">
             <div class="card bg-blur">
-                <div class="card-header text-center">
+                <div class="card-header">
                     <h5 class="my-1">Add managed student</h4>
                     <div>Add a student by entering their school-assigned email address.</div>
                 </div>
@@ -53,7 +53,8 @@ $user = SessionVisitor::GetActive()->GetVisitorUser();
                             <label>Email Address</label>
                         </div>
                     </div>
-                    <button class="btn btn-primary float-right" type="button" id="addBtn">Add</button>
+                    <button class="btn btn-primary" type="button" id="addBtn">Add</button>
+                    <span>When a student is added, data collected from them will be shared with you.</span>
                 </div>
             </div>
         </div>
