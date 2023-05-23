@@ -57,7 +57,7 @@ if ($user == false) {
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand me-0 px-3 fs-6" href="#"><img width="120px" src="/mat/img/woosh.png" alt="PhysyRec Logo"></a>
         <ul class="pnav">
-            <?php if ($user->GetUserRole() == G_STUDENT): ?>
+            <?php if ($user->IsStudent()): ?>
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/complex.php/dashboard" data-ajax="dashboard">
                     <i class="fas fa-house"></i>
@@ -83,7 +83,7 @@ if ($user == false) {
                     Install
                 </a>
             </li>
-            <?php elseif ($user->GetUserRole() > G_TEACHER): ?>
+            <?php elseif ($user->IsTeacher()): ?>
                 <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/complex.php/teachers/dashboard" data-ajax="teachers/dashboard">
                     <i class="fas fa-house"></i>
@@ -103,7 +103,7 @@ if ($user == false) {
                 </a>
             </li>
 
-            <?php if($user->GetUserRole() > G_SUPERUSER): ?>
+            <?php if($user->IsSuperuser()): ?>
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/complex.php/admin/console" data-ajax="admin/console">
                     <i class="fas fa-user-shield"></i>

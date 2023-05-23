@@ -229,7 +229,7 @@ class User extends \Physler\Entity\User {
     }
 
     public function IsTeacher() {
-        return IN_ARRAY( '10', $this->GetUserGroups() );
+        return IN_ARRAY( '10', $this->GetUserGroups() ) || $this->IsSuperuser();
     }
 
     public function IsStudent() {
