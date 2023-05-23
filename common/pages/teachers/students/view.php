@@ -25,6 +25,8 @@ if ($student == false) {
                 <div class="card-header card-profile d-flex">
                     <img src="<?= $student->profile_picture ?>" alt="">
                     <h5 class="my-1"><?= $student->display_name ?></h4>
+                    <!-- remove btn -->
+                    <button class="btn btn-danger ms-auto" data-ajax="teachers/students/remove?id=<?= $student->id ?>"><i class="fas fa-user-x"></i> Remove User</button>
                 </div>
                 <div class="card-body">
                     <div><?= $student->real_name ?></div>

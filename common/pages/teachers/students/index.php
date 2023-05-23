@@ -54,7 +54,7 @@ $user = SessionVisitor::GetActive()->GetVisitorUser();
                         </div>
                     </div>
                     <button class="btn btn-primary" type="button" id="addBtn">Add</button>
-                    <span>When a student is added, data collected from them will be shared with you.</span>
+                    <span class="w-100 text-right">When a student is added, data collected from them will be shared with you.</span>
                 </div>
             </div>
         </div>
