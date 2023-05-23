@@ -27,7 +27,7 @@ if ($student == false) {
                 </div>
                 <div class="card-body text-center">
                     <div>Are you sure you want to remove <?= $student->display_name ?> as your student?</div>
-                    <button class="btn btn-danger mt-3" data-ajax="teachers/students/remove?id=<?= $student->id ?>">Remove</button>
+                    <button class="btn btn-danger mt-3 w-100" data-ajax="teachers/students/remove?id=<?= $student->id ?>">Remove</button>
                 </div>
             </div>
         </div>
