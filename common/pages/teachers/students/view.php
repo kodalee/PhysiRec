@@ -20,7 +20,7 @@ if ($student == false) {
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <a class="btn btn-link text-decoration-none" data-ajax="activity"><i class="fas fa-chevron-left"></i> Go back</a>
+            <a class="btn btn-link text-decoration-none" data-ajax="teachers/students"><i class="fas fa-chevron-left"></i> Go back</a>
             <div class="card bg-blur">
                 <div class="card-header card-profile d-flex">
                     <img src="<?= $student->profile_picture ?>" alt="">
