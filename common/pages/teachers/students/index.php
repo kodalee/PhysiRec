@@ -40,15 +40,18 @@ $user = SessionVisitor::GetActive()->GetVisitorUser();
                 </div>
             </div>
         </div>
-        <div class="col-md-6 ">
+        <div class="col-md-6">
             <div class="card bg-blur">
                 <div class="card-header text-center">
-                    <h5 class="my-1">Add student</h4>
-                    <div>Add a student by entering their email address.</div>
+                    <h5 class="my-1">Add managed student</h4>
+                    <div>Add a student by entering their school-assigned email address.</div>
                 </div>
                 <div class="card-body">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Email address" aria-label="Email address" aria-describedby="addBtn">
+                        <div class="form-input-label me-1">
+                            <input class="form-control" type="number" placeholder=" " id="muscle-sets">
+                            <label>Email Address</label>
+                        </div>
                         <button class="btn btn-primary" type="button" id="addBtn">Add</button>
                     </div>
                 </div>
