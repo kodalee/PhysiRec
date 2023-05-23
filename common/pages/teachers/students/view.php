@@ -29,7 +29,7 @@ if ($student == false) {
                     <div><?= $student->real_name ?></div>
                     <div><?= $student->email ?></div>
                     <div class="mt-2">
-                        <h5 class="my-1">Activity</h5>
+                        <h5 class="my-1">Activity <button id="addBtn" class="btn btn-primary btn-sm">Add</button></h5>
                         <?php
                         echo $student->GetHtmlActivityList(true);
                         ?>
