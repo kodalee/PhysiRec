@@ -23,9 +23,7 @@ if ($student == false) {
             <a class="btn btn-link text-decoration-none" data-ajax="teachers/students/view?id=<?= $student->id ?>"><i class="fas fa-chevron-left"></i> Go back</a>
             <div class="card bg-blur">
                 <div class="card-header card-profile d-flex">
-                    <div class="me-1">Remove </div>
-                    <img src="<?= $student->profile_picture ?>" alt="">
-                    <h5 class="my-1"><?= $student->display_name ?></h4>
+                    <h5 class="my-1">Remove <?= $student->display_name ?></h4>
                 </div>
                 <div class="card-body">
                     <div>Are you sure you want to remove <?= $student->display_name ?> as your student?</div>
