@@ -78,6 +78,11 @@ $u = $sm->GetVisitorUser();
 						<div class="bar12"></div>
 					</div>
 				</div>
+				<div class="logo-sub">
+					<div class="company-logo">
+						<img src="https://gecs.org/wp-content/uploads/2020/07/gecs-logo-2020-72.png">
+					</div>
+				</div>
 			</div>
 			<script>
 				<?php if (is_app_hang()): ?>
