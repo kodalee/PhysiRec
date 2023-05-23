@@ -23,7 +23,16 @@ if ($student == false) {
             <div class="card bg-blur">
                 <div class="card-header card-profile d-flex">
                     <img src="<?= $student->profile_picture ?>" alt="">
-                    <h5 class="my-1"><?= $student->real_name ?></h4>
+                    <h5 class="my-1"><?= $student->display_name ?></h4>
+                </div>
+                <div class="card-body">
+                    <div><?= $student->real_name ?></div>
+                    <div><?= $student->email ?></div>
+                    <div class="mt-2">
+                        <?php
+                        $activityList = $student->GetHtmlActivityList(true);
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

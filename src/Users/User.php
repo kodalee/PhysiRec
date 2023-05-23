@@ -48,8 +48,29 @@ class User extends \Physler\Entity\User {
         //     $this->activity_list = $activities;
         // }
     }
-
-    public function GetHtmlActivityList() {
+    public static function HumanTime ($time)
+    {
+    
+        $time = time() - $time; // to get the time since that moment
+        $time = ($time<1)? 1 : $time;
+        $tokens = array (
+            31536000 => 'year',
+            2592000 => 'month',
+            604800 => 'week',
+            86400 => 'day',
+            3600 => 'hour',
+            60 => 'minute',
+            1 => 'second'
+        );
+    
+        foreach ($tokens as $unit => $text) {
+            if ($time < $unit) continue;
+            $numberOfUnits = floor($time / $unit);
+            return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
+        }
+    
+    }
+    public function GetHtmlActivityList($all = false) {
         $activityEmojis = activity_emojis;
         if (COUNT( $this->activity_list ) > 0) {
             $ar = "<ul class='my-0 latest-activity'>";
@@ -57,8 +78,9 @@ class User extends \Physler\Entity\User {
                 $act = $this->activity_list[$i];
                 $currentDay = date("d/m/Y", time()); 
                 $activityDay = date("d/m/Y", intval($act->timestamp));
+                $duration = User::HumanTime($act->duration);
                 if ($currentDay == $activityDay) {
-                    $ar = $ar . "<li>{$activityEmojis[$act->activity_catagory]} {$act->activity_description}</li>";
+                    $ar = $ar . "$activityDay, for $duration: <li>{$activityEmojis[$act->activity_catagory]} {$act->activity_description}</li>";
                 }
             }
             $ar = $ar . "</ul>";
