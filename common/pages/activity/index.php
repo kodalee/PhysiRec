@@ -301,7 +301,12 @@
         main.time.min = Date.now() - 1209600000;
         setInterval(() => {
             if (!c_time_interfered) {
-                main.time.valueAsNumber = new Date(Date.now());
+                var now = new Date();
+                now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                now.setMilliseconds(null)
+                now.setSeconds(null)
+
+                main.time.valueAsNumber = now.getTime();
             }
         }, 1000)
 
