@@ -21,7 +21,7 @@ if ($student == false) {
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card bg-blur">
-                <div class="card-header d-flex">
+                <div class="card-header card-profile d-flex">
                     <img src="<?= $student->profile_picture ?>" alt="">
                     <h5 class="my-1"><?= $student->real_name ?></h4>
                 </div>
