@@ -28,7 +28,8 @@ if ($student == false) {
                 <div class="card-body">
                     <div><?= $student->real_name ?></div>
                     <div><?= $student->email ?></div>
-                    <div class="mb-0">
+                    <div class="mt-2">
+                        <h5 class="my-1">Activity</h5>
                         <?php
                         echo $student->GetHtmlActivityList(true);
                         ?>

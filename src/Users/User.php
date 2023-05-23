@@ -72,6 +72,7 @@ class User extends \Physler\Entity\User {
     }
     public function GetHtmlActivityList($all = false) {
         $activityEmojis = activity_emojis;
+        $today = $all ? "at all" : "today";
         if (COUNT( $this->activity_list ) > 0) {
             $ar = "<ul class='my-0 latest-activity'>";
             for ($i=0; $i < COUNT( $this->activity_list ); $i++) { 
@@ -88,11 +89,11 @@ class User extends \Physler\Entity\User {
                 return $ar;
             }
             else {
-                return "<p>It looks like you don't have any activities logged today.</p>";
+                return "<div>It looks like you don't have any activities logged $today.</div>";
             }
         }
         else {
-            return "<p>It looks like you don't have any activities logged today.</p>";
+            return "<div>It looks like you don't have any activities logged $today.</div>";
         }
     }
 
