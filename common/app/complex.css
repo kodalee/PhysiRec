@@ -340,7 +340,7 @@ a.student-row:hover::after {
   background: rgba(255, 255, 255, 0.4);
 }
 
-.card-header {
+.card-header:not(.card-profile) {
   padding-bottom: 0 !important;
 }
 

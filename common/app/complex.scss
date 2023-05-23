@@ -349,7 +349,7 @@ a.student-row:hover::after  {
   background: #fff6; 
 }
 
-.card-header {
+.card-header:not(.card-profile) {
 	padding-bottom: 0 !important;
 }
 .goals {
