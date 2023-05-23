@@ -80,7 +80,7 @@ $u = $sm->GetVisitorUser();
 				</div>
 				<div class="logo-sub">
 					<div class="company-logo">
-						<img src="https://gecs.org/wp-content/uploads/2020/07/gecs-logo-2020-72.png">
+						<img src="https://cdn.gecskeyclub.org/gecs.org/goldeagle-logo.png">
 					</div>
 				</div>
 			</div>
