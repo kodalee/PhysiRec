@@ -18,17 +18,14 @@ if ($student == false) {
     </div>
 </div>
 <div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-6">
-            <div class="profile-picture">
-                <img src="<?= $student->profile_picture ?>" alt="">
-            </div>
             <div class="card bg-blur">
-                <div class="card-header text-center">
+                <div class="card-header d-flex">
+                    <img src="<?= $student->profile_picture ?>" alt="">
                     <h5 class="my-1"><?= $student->real_name ?></h4>
-                    <div><?= $student->email ?></div>
-                    <div><?= $student->display_name ?></div>
-                    
+                </div>
+            </div>
         </div>
     </div>
 </div>
