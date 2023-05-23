@@ -57,7 +57,7 @@ if ($user == false) {
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand me-0 px-3 fs-6" href="#"><img width="120px" src="/mat/img/woosh.png" alt="PhysyRec Logo"></a>
         <ul class="pnav">
-            <?php if ($user->GetUserRole() > G_STUDENT): ?>
+            <?php if ($user->GetUserRole() == G_STUDENT): ?>
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/complex.php/dashboard" data-ajax="dashboard">
                     <i class="fas fa-house"></i>
